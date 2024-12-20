@@ -3,7 +3,7 @@ package ub.edu.model.cataleg;
 public abstract class ContingutDigital {
     private String titol;
     private String descripcio;
-    private int anyEstrena;
+    private String anyEstrena;
     private int durada;
     private float puntuacio;
     private int numVotants;
@@ -12,13 +12,22 @@ public abstract class ContingutDigital {
     private String idioma;
     private float valoracioInicial;
 
-    public ContingutDigital(String nom, int anyEstrena) {
+    public ContingutDigital() {
+
+    }
+
+    public ContingutDigital(String nom) {
         this.titol = nom;
-        this.anyEstrena = anyEstrena;
         this.numVisualitzacions = 0;
     }
 
-    public ContingutDigital(String titol, String descripcio, int estrena, int durada) {
+    public ContingutDigital(String nom, int durada) {
+        this.titol = nom;
+        this.durada = durada;
+        this.numVisualitzacions = 0;
+    }
+
+    public ContingutDigital(String titol, String descripcio, String estrena, int durada) {
         this.titol = titol;
         this.descripcio = descripcio;
         this.anyEstrena = estrena;
@@ -26,14 +35,31 @@ public abstract class ContingutDigital {
         this.numVisualitzacions = 0;
     }
 
-    public ContingutDigital(String titol, int estrena, int durada) {
+    public ContingutDigital(String titol, String descripcio, String estrena, int durada, float puntuacio, String url) {
+        this.titol = titol;
+        this.descripcio = descripcio;
+        this.anyEstrena = estrena;
+        this.durada = durada;
+        this.puntuacio = puntuacio;
+        this.url = url;
+        this.numVisualitzacions = 0;
+    }
+
+    public ContingutDigital(String titol, String estrena, int durada) {
         this.titol = titol;
         this.durada = durada;
         this.anyEstrena = estrena;
         this.numVisualitzacions = 0;
     }
 
-    public ContingutDigital(String titol, int anyEstrena, String descripcio, String url){
+    public ContingutDigital(String titol, String estrena, String idioma) {
+        this.titol = titol;
+        this.idioma = idioma;
+        this.anyEstrena = estrena;
+        this.numVisualitzacions = 0;
+    }
+
+    public ContingutDigital(String titol, String anyEstrena, String descripcio, String url){
         this.titol = titol;
         this.anyEstrena = anyEstrena;
         this.descripcio = descripcio;
@@ -41,11 +67,15 @@ public abstract class ContingutDigital {
         this.url = url;
     }
 
-    public ContingutDigital(String titol, int anyEstrena, String descripcio, int durada, float puntuacio, int numVotants) {
+    public ContingutDigital(String titol, String anyEstrena, String descripcio, int durada, float puntuacio, int numVotants, String url, String idioma) {
         this.titol = titol;
         this.anyEstrena = anyEstrena;
         this.descripcio = descripcio;
         this.durada = durada;
+        this.puntuacio = puntuacio;
+        this.numVotants = numVotants;
+        this.url = url;
+        this.idioma = idioma;
         this.numVisualitzacions = 0;
     }
 
@@ -55,7 +85,7 @@ public abstract class ContingutDigital {
         this.numVisualitzacions = 0;
     }
 
-    public ContingutDigital(String nom, String descripcio, String url, int anyEstrena, String idioma, int durada, float valoracio) {
+    public ContingutDigital(String nom, String descripcio, String url, String anyEstrena, String idioma, int durada, float valoracio) {
         this.titol = nom;
         this.descripcio = descripcio;
         this.url = url;
@@ -74,8 +104,12 @@ public abstract class ContingutDigital {
         return descripcio;
     }
 
-    public int getAnyEstrena() {
+    public String getAnyEstrena() {
         return anyEstrena;
+    }
+
+    public void setAnyEstrena(String anyEstrena) {
+        this.anyEstrena = anyEstrena;
     }
 
     public int getDurada() {
@@ -99,7 +133,7 @@ public abstract class ContingutDigital {
         return numVisualitzacions;
     }
 
-    public String getURL() {
+    public String getUrl() {
         return url;
     }
 

@@ -4,6 +4,7 @@ import ub.edu.model.cataleg.Tematica;
 import ub.edu.model.exceptions.NotFoundException;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CarteraTema implements CarteraTemaInterface{
@@ -11,6 +12,20 @@ public class CarteraTema implements CarteraTemaInterface{
 
     public CarteraTema() {
         this.llistaTemes =  new HashMap<>();
+    }
+
+    public CarteraTema(List<Tematica> listaTemas) {
+        this.llistaTemes = new HashMap<>();
+        for (Tematica tema : listaTemas) {
+            llistaTemes.put(tema.getNomTematica(), tema);
+        }
+    }
+
+    public void setLlistaTemes(List<Tematica> listaTemas) {
+        this.llistaTemes = new HashMap<>();
+        for (Tematica tema : listaTemas) {
+            llistaTemes.put(tema.getNomTematica(), tema);
+        }
     }
 
     @Override
@@ -35,6 +50,10 @@ public class CarteraTema implements CarteraTemaInterface{
 
     public boolean containsKey(String name){
         return llistaTemes.containsKey(name);
+    }
+
+    public List<Tematica> getTemes() {
+        return (List<Tematica>) llistaTemes.values();
     }
 
 

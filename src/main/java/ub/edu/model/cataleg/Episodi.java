@@ -1,23 +1,23 @@
 package ub.edu.model.cataleg;
 
-public class Episodi {
+public class Episodi extends ContingutDigital {
 
     private String nomSerie;
     private int numTemporada;
     private int numEpisodi;
-    private String titolEpisodi;
-    private int durada;
-    private String descripcio;
-    private float valoracioInicial;
-    private String url;
-    private int anyEstrena;
 
-    public Episodi(String nomSerie, int numTemporada, int numEpisodi, String titolEpisodi, int durada) {
+    public Episodi(String nomSerie, int numTemporada, int numEpisodi, String titolEpisodi, String descripcio, String anyEstrena, int durada, String url, float valoracioInicial) {
+        super(titolEpisodi, descripcio, anyEstrena, durada, valoracioInicial, url);
         this.nomSerie = nomSerie;
         this.numTemporada = numTemporada;
         this.numEpisodi = numEpisodi;
-        this.titolEpisodi = titolEpisodi;
-        this.durada = durada;
+    }
+
+    public Episodi(String nomSerie, int numTemporada, int numEpisodi, String titolEpisodi, int durada) {
+        super(titolEpisodi, durada);
+        this.nomSerie = nomSerie;
+        this.numTemporada = numTemporada;
+        this.numEpisodi = numEpisodi;
     }
 
     public String getNom() {
@@ -30,33 +30,5 @@ public class Episodi {
 
     public int getNumEpisodi() {
         return numEpisodi;
-    }
-
-    public String getTitolEpisodi() {
-        return titolEpisodi;
-    }
-
-    public int getDurada() {
-        return durada;
-    }
-
-    public void setTitolEpisodi(String nom) {
-        this.titolEpisodi = nom;
-    }
-
-    public String getDescripcio() {
-        return descripcio;
-    }
-
-    public float getValoracioInicial() {
-        return valoracioInicial;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public int getAnyEstrena() {
-        return anyEstrena;
     }
 }

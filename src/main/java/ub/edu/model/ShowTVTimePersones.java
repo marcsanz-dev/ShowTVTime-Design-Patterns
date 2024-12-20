@@ -1,26 +1,28 @@
 package ub.edu.model;
 
+import ub.edu.model.Carteras.CarteraPersona;
+
 import java.util.*;
 
 public class ShowTVTimePersones {
 
-    private CarteraPersones cartera;
+    private CarteraPersona cartera;
 
     public ShowTVTimePersones(){
-        cartera = new CarteraPersones();
+        cartera = new CarteraPersona();
     }
     public void setCarteraPersones (List<Persona> llistaC) {
-        cartera = new CarteraPersones(llistaC);
+        cartera = new CarteraPersona(llistaC);
     }
     public Persona findPersonaCartera(String string) throws Exception {
-        return cartera.find(string);
+        return cartera.get(string);
     }
 
     public void addPersona(Persona persona) {
         cartera.add(persona);
     }
 
-    public CarteraPersones getCarteraPersones() {
+    public CarteraPersona getCarteraPersones() {
         return cartera;
     }
 

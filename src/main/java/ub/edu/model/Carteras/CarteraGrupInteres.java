@@ -3,22 +3,36 @@ package ub.edu.model.Carteras;
 import ub.edu.model.cataleg.GrupInteres;
 import ub.edu.model.exceptions.GrupInteresNotFoundException;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CarteraGrupInteres implements CarteraGrupInteresInterface{
-    private List<GrupInteres> grupsInteres;
+    private HashMap<String, GrupInteres> grupsInteres;
 
     public CarteraGrupInteres() {
-        grupsInteres = new ArrayList<>();
+        grupsInteres = new HashMap<>();
     }
 
     public CarteraGrupInteres(List<GrupInteres> grupsInteres) {
-        this.grupsInteres = grupsInteres;
+        this.grupsInteres = new HashMap<>();
+        for (GrupInteres grupInteres : grupsInteres) {
+            this.grupsInteres.put(grupInteres.getNom(), grupInteres);
+        }
+    }
+
+    public void setGrupsInteres(List<GrupInteres> grupsInteres) {
+        this.grupsInteres = new HashMap<>();
+        for (GrupInteres grupInteres : grupsInteres) {
+            this.grupsInteres.put(grupInteres.getNom(), grupInteres);
+        }
+    }
+
+    public List<GrupInteres> getGrupsInteres() {
+        return (List<GrupInteres>) grupsInteres.values();
     }
 
     public GrupInteres get(String nomGrup) throws GrupInteresNotFoundException {
-        for (GrupInteres grupInteres : grupsInteres) {
+        for (GrupInteres grupInteres : grupsInteres.values()) {
             if (grupInteres.getNom().equals(nomGrup)) {
                 return grupInteres;
             }
@@ -27,15 +41,12 @@ public class CarteraGrupInteres implements CarteraGrupInteresInterface{
     }
 
     public void add(GrupInteres grupInteres) {
-        grupsInteres.add(grupInteres);
+        grupsInteres.put(grupInteres.getNom(), grupInteres);
     }
 
     public void delete(GrupInteres grupInteres){
         grupsInteres.remove(grupInteres);
     }
 
-    public List<GrupInteres> getGrups() {
-        return grupsInteres;
-    }
 
 }

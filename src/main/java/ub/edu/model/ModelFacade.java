@@ -66,7 +66,7 @@ public class ModelFacade {
     public HashMap<Object, Object> getDetallsSerie(String idContingutAudiovisual) {
         HashMap<Object, Object> atributsSerie = new HashMap<>();
         Serie s = showTVTimeCataleg.findSerie(idContingutAudiovisual);
-        atributsSerie.put("imatge", s.getURL());
+        atributsSerie.put("imatge", s.getUrl());
         atributsSerie.put("nom", s.getNom());
         atributsSerie.put("descripcio", s.getDescripcio());
         atributsSerie.put("dataAnyPrimeraEmissio", s.getAnyEstrena());
@@ -79,7 +79,7 @@ public class ModelFacade {
     public HashMap<Object, Object> getDetallsPelicula(String idContingutAudiovisual) {
         HashMap<Object, Object> atributsPelicula = new HashMap<>();
         Pelicula p = showTVTimeCataleg.findPelicula(idContingutAudiovisual);
-        atributsPelicula.put("imatge", p.getURL());
+        atributsPelicula.put("imatge", p.getUrl());
         atributsPelicula.put("nom", p.getNom());
         atributsPelicula.put("descripcio", p.getDescripcio());
         atributsPelicula.put("dataAnyPrimeraEmissio", p.getAnyEstrena());
