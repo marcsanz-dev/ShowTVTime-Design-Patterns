@@ -109,7 +109,7 @@ public class DAOEpisodiDB implements DAOEpisodi {
                     LEFT JOIN Serie ON Temporada.serie_id = Serie.id
             WHERE
                 Temporada.id = '%d' AND Serie.titol = '%s'
-        """, episodi.getNumTemporada(), episodi.getNomSerie());
+        """, episodi.getNumTemporada(), episodi.getNom());
         try (
                 ResultSet rs = this.connection.createStatement().executeQuery(sql);
         ){
@@ -152,7 +152,7 @@ public class DAOEpisodiDB implements DAOEpisodi {
                     LEFT JOIN Serie ON Serie.id = Temporada.serie_id
             WHERE
                 Episodi.numEpisodi = '%d' AND Temporada.numTemporada = '%d' AND Serie.titol = '%s'
-        """, episodi.getNumEpisodi(), episodi.getNumTemporada(), episodi.getNomSerie());
+        """, episodi.getNumEpisodi(), episodi.getNumTemporada(), episodi.getNom());
         try (
                 ResultSet rs = this.connection.createStatement().executeQuery(sql);
         ){

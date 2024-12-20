@@ -1,5 +1,8 @@
 package ub.edu.model;
 
+import ub.edu.model.Carteras.CarteraContingutDigital;
+import ub.edu.model.Carteras.CarteraGrupInteres;
+import ub.edu.model.Carteras.CarteraTema;
 import ub.edu.model.cataleg.*;
 import ub.edu.model.cataleg.*;
 import ub.edu.model.exceptions.NotAvailableGroupException;
@@ -9,150 +12,111 @@ import ub.edu.model.exceptions.NotAvailableShowException;
 import java.util.*;
 
 public class ShowTVTimeCataleg {
-    private List<Serie> llistaSeries;
-    private List<Pelicula> llistaPelicules;
-    private List<Tematica> llistaTematiques;
-    private List<GrupInteres> llistaGrupsInteres;
+    private CarteraContingutDigital llistaContingutDigital;
+    private CarteraTema llistaTematiques;
+    private CarteraGrupInteres llistaGrupsInteres;
 
 
     public ShowTVTimeCataleg(){
-
-        llistaSeries = new ArrayList<Serie>();
-        llistaPelicules = new ArrayList<Pelicula>();
-        llistaTematiques = new ArrayList<Tematica>();
-        llistaGrupsInteres = new ArrayList<GrupInteres>();
+        llistaContingutDigital = new CarteraContingutDigital();
+        llistaTematiques = new CarteraTema();
+        llistaGrupsInteres = new CarteraGrupInteres();
     }
     // Creador el ImUB
 
     public ShowTVTimeCataleg(List<Serie> llistaSeries, List<Pelicula> llistaPelicules, List<Tematica> llistaTematiques, List<GrupInteres> llistaGrupsInteres) {
 
-        this.llistaSeries = llistaSeries;
-        this.llistaPelicules = llistaPelicules;
-        this.llistaTematiques = llistaTematiques;
-        this.llistaGrupsInteres = llistaGrupsInteres;
+        this.llistaContingutDigital = new CarteraContingutDigital(llistaSeries, llistaPelicules);
+        this.llistaTematiques = new CarteraTema(llistaTematiques);
+        this.llistaGrupsInteres = new CarteraGrupInteres(llistaGrupsInteres);
     }
 
     public void setLlistaSeries(List<Serie> llistaSeries) {
-        this.llistaSeries = llistaSeries;
+        this.llistaContingutDigital.setSeries(llistaSeries);
     }
 
     public void setLlistaPelicules(List<Pelicula> llistaPelicules) {
-        this.llistaPelicules = llistaPelicules;
+        this.llistaContingutDigital.setPelicules(llistaPelicules);
     }
 
 
     public void setLlistaTematiques(List<Tematica> llistaTematiques) {
-        this.llistaTematiques = llistaTematiques;
+        this.llistaTematiques.setLlistaTemes(llistaTematiques);
     }
 
 
-    public void setLlistaGrupsInteres(List<GrupInteres> llistaGrupsInteres) {this.llistaGrupsInteres = llistaGrupsInteres;}
+    public void setLlistaGrupsInteres(List<GrupInteres> llistaGrupsInteres) {
+        this.llistaGrupsInteres.setGrupsInteres(llistaGrupsInteres);
+    }
 
     public ContingutDigital findContingutDigital(String nomContingut){
-        List<ContingutDigital> combinedList = new ArrayList<>(llistaPelicules);
-        combinedList.addAll(llistaSeries);
-        for (Serie s : llistaSeries) {
-            for(Temporada t: s.getTemporades())
-                combinedList.addAll(t.getEpisodis());
+        try {
+            return llistaContingutDigital.get(nomContingut);
+        } catch (Exception e) {
+            return null;
         }
-
-        for (ContingutDigital p : combinedList) {
-            if (p.getNom().equals(nomContingut)) {
-                return p;
-            }
-        }
-        return null;
     }
 
     public Tematica findTematica(String nomTematica) {
-        for (Tematica t : llistaTematiques) {
-            if (t.getNomTematica().equals(nomTematica)) {
-                return t;
-            }
+        try {
+            return llistaTematiques.get(nomTematica);
+        } catch (Exception e) {
+            return null;
         }
-        return null;
     }
     public Pelicula findPelicula(String nomPeli) {
-        for (Pelicula p : llistaPelicules) {
-            if (p.getNom().equals(nomPeli)) {
-                return p;
-            }
+        try {
+            return llistaContingutDigital.getPelicula(nomPeli);
+        } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 
     public Serie findSerie(String nomSerie) {
-        for (Serie s : llistaSeries) {
-            if (s.getNom().equals(nomSerie)) {
-                return s;
-            }
+        try {
+            return llistaContingutDigital.getSerie(nomSerie);
+        } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 
     public GrupInteres findGrupInteres(String nomGrup) throws Exception {
-        for (GrupInteres s : llistaGrupsInteres) {
-            if (s.getNom().equals(nomGrup)) {
-                return s;
-            }
-        }
-        throw new NotAvailableGroupException();
+        return llistaGrupsInteres.get(nomGrup);
     }
 
     public  Episodi findEpisodi(String nomSerie, int numTemporada, int numEpisodi) {
-        for (Serie s : llistaSeries) {
-            if (s.getNom().equals(nomSerie)) {
-                return s.findEpisodi(numTemporada, numEpisodi);
-            }
-        }
-        return null;
+        return llistaContingutDigital.getEpisodi(nomSerie, numTemporada, numEpisodi);
     }
 
     public  Episodi findEpisodi(String nomEpisodi) {
-        for (Serie s : llistaSeries) {
-                return s.findEpisodi(nomEpisodi);
-        }
-        return null;
+        return llistaContingutDigital.getEpisodi(nomEpisodi);
     }
     public List<Tematica> getAllTematiques() {
-        return llistaTematiques;
+        return llistaTematiques.getTemes();
     }
 
     public List<Pelicula> getAllPelicules() {
-        return llistaPelicules;
+        return llistaContingutDigital.getPelicules();
     }
 
     public List<Serie> getAllSeries() {
-        return llistaSeries;
+        return llistaContingutDigital.getSeries();
     }
 
     public List<GrupInteres> getAllGrupsInteres() {
-        return llistaGrupsInteres;
+        return llistaGrupsInteres.getGrupsInteres();
     }
 
     public List<ContingutDigital> getAllContingutsDigitals() {
-        List<ContingutDigital> contingutDigitals = new ArrayList<ContingutDigital>();
-        contingutDigitals.addAll(llistaPelicules);
-        contingutDigitals.addAll(llistaSeries);
-        return contingutDigitals;
+        return llistaContingutDigital.getContingutDigital();
     }
 
     public boolean esPelicula(String nomContingut) {
-        for (Pelicula p : llistaPelicules) {
-            if (p.getNom().equals(nomContingut)) {
-                return true;
-            }
-        }
-        return false;
+        return llistaContingutDigital.containsKey(nomContingut);
     }
 
     public Temporada findTemporada(String nomSerie, int numTemporada) {
-        for (Serie s : llistaSeries) {
-            if (s.getNom().equals(nomSerie)) {
-                return s.findTemporada(numTemporada);
-            }
-        }
-        return null;
+        return llistaContingutDigital.findTemporada(nomSerie, numTemporada);
     }
 
     public List<HashMap<Object, Object>> getLlistaNomsPelicules(List<Pelicula> sortedList) {
@@ -186,19 +150,19 @@ public class ShowTVTimeCataleg {
         return getLlistaNomsPelicules(sortedList);
     }
 
-    public void addPelicula(String nom,  int estrena, int durada) {
+    public void addPelicula(String nom,  String estrena, int durada) {
         Pelicula p = new Pelicula(nom, estrena, durada);
-        llistaPelicules.add(p);
+        llistaContingutDigital.add(p);
     }
 
-    public void addSerie(String nom,  int estrena) {
+    public void addSerie(String nom,  String estrena) {
         Serie s = new Serie(nom, estrena);
-        llistaSeries.add(s);
+        llistaContingutDigital.add(s);
     }
-    public void addSerie(String nomSerie, String descripcio, String url, int anyEstrena,
+    public void addSerie(String nomSerie, String descripcio, String url, String anyEstrena,
                             String idioma, int durada) {
         Serie s = new Serie(nomSerie, descripcio, url, anyEstrena, idioma, durada);
-        llistaSeries.add(s);
+        llistaContingutDigital.add(s);
     }
 
     public void addTemporada (String nomSerie, int numTemporada) throws Exception {
@@ -243,15 +207,15 @@ public class ShowTVTimeCataleg {
         llistaTematiques.add(t);
     }
 
-    public void addPelicula(String titol, String descripcio, String url, int estrena, String idioma, int durada, float valoracio) {
+    public void addPelicula(String titol, String descripcio, String url, String estrena, String idioma, int durada, float valoracio) {
         Pelicula p = new Pelicula(titol, descripcio, url, estrena, idioma, durada, valoracio);
-        llistaPelicules.add(p);
+        llistaContingutDigital.add(p);
     }
 
     public void addTematicaToPelicula(String titol, String tematica) throws Exception {
         Pelicula p = findPelicula(titol);
         if (p!=null) {
-            p.addTematica(tematica);
+            p.addTematica(findTematica(tematica));
         } else {
             throw new NotAvailableMovieException();
         }
@@ -306,10 +270,9 @@ public class ShowTVTimeCataleg {
     }
 
     private List<GrupInteres> getGrupsList() throws NotAvailableGroupException {
-        if (llistaGrupsInteres.isEmpty()) {
-            throw new NotAvailableGroupException();
-        }
-        return llistaGrupsInteres;
+        List<GrupInteres> grups = llistaGrupsInteres.getGrupsInteres();
+        if(grups != null) return grups;
+        else throw new NotAvailableGroupException();
     }
 
     public void afegirSerie2Grup(String grup, String serie) throws Exception{
@@ -323,13 +286,7 @@ public class ShowTVTimeCataleg {
 
 
     public GrupInteres findGrup(String nomGrup) throws Exception {
-
-        for (GrupInteres g : llistaGrupsInteres ) {
-            if (g.getNom().equals(nomGrup)) {
-                return g;
-            }
-        }
-        throw new NotAvailableGroupException();
+        return llistaGrupsInteres.get(nomGrup);
     }
 
     public List<HashMap<Object, Object>> getAllGrupsInteresPerNom() {

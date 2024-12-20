@@ -41,10 +41,10 @@ public class DAOEpisodiMOCK implements DAOEpisodi {
 
     @Override
     public boolean add(final Episodi episodi) throws Exception {
-        if (getById(new String[]{episodi.getNomSerie(), episodi.getNom()}).isPresent()) {
+        if (getById(new String[]{episodi.getNom(), episodi.getNom()}).isPresent()) {
             return false;
         }
-        episodis.put(new Trio<>(episodi.getNomSerie(), episodi.getNumTemporada(), episodi.getNumEpisodi()), episodi);
+        episodis.put(new Trio<>(episodi.getNom(), episodi.getNumTemporada(), episodi.getNumEpisodi()), episodi);
         return true;
     }
 
@@ -52,11 +52,11 @@ public class DAOEpisodiMOCK implements DAOEpisodi {
     public boolean update(Episodi episodi, String[] params) throws Exception {
         episodi.setNom(Objects.requireNonNull(
                 params[0], "Episode name cannot be null"));
-        return episodis.replace(new Trio<>(episodi.getNomSerie(), episodi.getNumTemporada(), episodi.getNumEpisodi()), episodi) != null;
+        return episodis.replace(new Trio<>(episodi.getNom(), episodi.getNumTemporada(), episodi.getNumEpisodi()), episodi) != null;
     }
 
     @Override
     public boolean delete(Episodi episodi) throws Exception {
-        return episodis.remove(new Trio<>(episodi.getNomSerie(), episodi.getNumTemporada(), episodi.getNumEpisodi())) != null;
+        return episodis.remove(new Trio<>(episodi.getNom(), episodi.getNumTemporada(), episodi.getNumEpisodi())) != null;
     }
 }

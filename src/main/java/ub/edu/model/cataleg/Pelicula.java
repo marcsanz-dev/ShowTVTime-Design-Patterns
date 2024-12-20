@@ -1,51 +1,39 @@
 package ub.edu.model.cataleg;
 
-public class Pelicula extends ContingutDigital {
 
-    private String url;
-    private float valoracioInicial;
+import ub.edu.model.Carteras.CarteraTema;
 
-    public Pelicula(String titol, int estrena, int durada) {
-        super(titol, estrena);
-        this.durada = durada;
+public class Pelicula extends  ContingutDigital{
+
+    private CarteraTema llistaTematiques;
+
+    public Pelicula(String nom, String estrena, int durada) {
+        super(nom, estrena, durada);
+        llistaTematiques = new CarteraTema();
     }
 
-    public Pelicula(String titol, String descripcio, String url, int estrena, String idioma, int durada) {
-        super(titol, estrena, descripcio);
-        this.url = url;
-        this.idioma = idioma;
-        this.durada = durada;
-
+    public Pelicula(String titol, String descripcio) {
+        super(titol, descripcio);
+        llistaTematiques = new CarteraTema();
     }
 
-    public Pelicula(String titol, String descripcio, String url, int estrena, String idioma, float valoracio) {
-        super(titol, estrena, descripcio);
-        this.url = url;
-        this.idioma = idioma;
-        this.setValoracioInicial(valoracio);
+    //Per tal de no modificar el step posant la quantitat de gent que ha votat per tal
+    // d'obtenir la valoració, posem un número alt de votants fixe (100)
+    public Pelicula(String titol, String descripcio, String url, String estrena, String idioma, int durada, float valoracio) {
+        super(titol, estrena, descripcio, durada, valoracio, 100, url, idioma);
+        llistaTematiques = new CarteraTema();
     }
 
-    public Pelicula(String titol, String descripcio, String url, int estrena, String idioma, int durada, float valoracio) {
-        super(titol, estrena, descripcio, durada);
-        this.url = url;
-        this.idioma = idioma;
-        this.setValoracioInicial(valoracio);
+    public void addTematica(Tematica t) {
+        this.llistaTematiques.add(t);
     }
 
-    public  boolean equals (Pelicula p) {
-        return this.getTitol().equals(p.getNom());
+    public CarteraTema getTematiques() {
+        return llistaTematiques;
     }
 
-    public String getURL() {
-        return url;
-    }
-
-    public float getValoracioInicial() {
-        return valoracioInicial;
-    }
-
-    public void setValoracioInicial(float valoracioInicial) {
-        this.valoracioInicial = valoracioInicial;
+    public void setTitol(String titol) {
+        super.setTitol(titol);
     }
 
 }

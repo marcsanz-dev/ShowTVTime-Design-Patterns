@@ -1,6 +1,5 @@
 package ub.edu.model;
 
-import ub.edu.controller.MessagesCAT;
 import ub.edu.model.cataleg.*;
 import ub.edu.model.exceptions.*;
 import java.util.*;
@@ -67,7 +66,7 @@ public class ModelFacade {
     public HashMap<Object, Object> getDetallsSerie(String idContingutAudiovisual) {
         HashMap<Object, Object> atributsSerie = new HashMap<>();
         Serie s = showTVTimeCataleg.findSerie(idContingutAudiovisual);
-        atributsSerie.put("imatge", s.getImatgeUrl());
+        atributsSerie.put("imatge", s.getUrl());
         atributsSerie.put("nom", s.getNom());
         atributsSerie.put("descripcio", s.getDescripcio());
         atributsSerie.put("dataAnyPrimeraEmissio", s.getAnyEstrena());
@@ -80,7 +79,7 @@ public class ModelFacade {
     public HashMap<Object, Object> getDetallsPelicula(String idContingutAudiovisual) {
         HashMap<Object, Object> atributsPelicula = new HashMap<>();
         Pelicula p = showTVTimeCataleg.findPelicula(idContingutAudiovisual);
-        atributsPelicula.put("imatge", p.getURL());
+        atributsPelicula.put("imatge", p.getUrl());
         atributsPelicula.put("nom", p.getNom());
         atributsPelicula.put("descripcio", p.getDescripcio());
         atributsPelicula.put("dataAnyPrimeraEmissio", p.getAnyEstrena());
@@ -114,7 +113,7 @@ public class ModelFacade {
         atributsEpisodi.put("imatge", e.getUrl());
         atributsEpisodi.put("numTemporada", e.getNumTemporada());
         atributsEpisodi.put("numEpisodi", e.getNumEpisodi());
-        atributsEpisodi.put("nomSerie", e.getNomSerie());
+        atributsEpisodi.put("nomSerie", e.getNom());
         atributsEpisodi.put("anyEstrena", e.getAnyEstrena());
         atributsEpisodi.put("url", e.getUrl());
         return atributsEpisodi;
@@ -128,6 +127,9 @@ public class ModelFacade {
 
     public boolean addToWatchedHistoryList(String nomContingut, String correu, String data) throws Exception {
         // TODO: Pràctica 4: Cal afegir el contingut nomContingut a la WatchedHistory del client amb correu correu
+        Persona p = showTVTimePersones.findPersonaCartera(correu);
+        ContingutDigital c = showTVTimeCataleg.findContingutDigital(nomContingut);
+
         System.out.println("Model Facade: addToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
         return true;
     }
