@@ -1,112 +1,113 @@
 package ub.edu.model.cataleg;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class ContingutDigital {
-
+public abstract class ContingutDigital {
     private String titol;
     private String descripcio;
+    private int anyEstrena;
+    private int durada;
+    private float puntuacio;
+    private int numVotants;
+    private int numVisualitzacions;
+    private String url;
+    private String idioma;
+    private float valoracioInicial;
 
-    protected String idioma;
-    protected int durada;
-    private String estrena;
-
-    private float valoracioImdb;
-
-    private List<Tematica> llistaTematiques;
-    public ContingutDigital(String titol) {
-        this.titol = titol;
-        llistaTematiques = new ArrayList<Tematica>();
-
-    }
-    public ContingutDigital(String titol, int anyPrimeraEmissio) {
-        this.titol = titol;
-        this.estrena = Integer.toString(anyPrimeraEmissio);
-        llistaTematiques = new ArrayList<Tematica>();
+    public ContingutDigital(String nom, int anyEstrena) {
+        this.titol = nom;
+        this.anyEstrena = anyEstrena;
+        this.numVisualitzacions = 0;
     }
 
-    public ContingutDigital(String titol,int anyPrimeraEmissio,  String descripcio) {
+    public ContingutDigital(String titol, String descripcio, int estrena, int durada) {
         this.titol = titol;
         this.descripcio = descripcio;
-        this.estrena = Integer.toString(anyPrimeraEmissio);
-        llistaTematiques = new ArrayList<Tematica>();
+        this.anyEstrena = estrena;
+        this.durada = durada;
+        this.numVisualitzacions = 0;
     }
 
-    public ContingutDigital(String titol,int anyPrimeraEmissio,  String descripcio, int durada) {
+    public ContingutDigital(String titol, int estrena, int durada) {
         this.titol = titol;
+        this.durada = durada;
+        this.anyEstrena = estrena;
+        this.numVisualitzacions = 0;
+    }
+
+    public ContingutDigital(String titol, int anyEstrena, String descripcio, String url){
+        this.titol = titol;
+        this.anyEstrena = anyEstrena;
+        this.descripcio = descripcio;
+        this.numVisualitzacions = 0;
+        this.url = url;
+    }
+
+    public ContingutDigital(String titol, int anyEstrena, String descripcio, int durada, float puntuacio, int numVotants) {
+        this.titol = titol;
+        this.anyEstrena = anyEstrena;
         this.descripcio = descripcio;
         this.durada = durada;
-        this.estrena = Integer.toString(anyPrimeraEmissio);
-        llistaTematiques = new ArrayList<Tematica>();
+        this.numVisualitzacions = 0;
     }
 
-    public ContingutDigital(String titol, String descripcio, String url, int estrena, String idioma, int durada, float valoracio) {
+    public ContingutDigital(String titol, String descripcio) {
         this.titol = titol;
         this.descripcio = descripcio;
-        this.estrena = Integer.toString(estrena);
+        this.numVisualitzacions = 0;
+    }
+
+    public ContingutDigital(String nom, String descripcio, String url, int anyEstrena, String idioma, int durada, float valoracio) {
+        this.titol = nom;
+        this.descripcio = descripcio;
+        this.url = url;
+        this.anyEstrena = anyEstrena;
         this.idioma = idioma;
         this.durada = durada;
-        this.valoracioImdb = valoracio;
-        llistaTematiques = new ArrayList<Tematica>();
+        this.valoracioInicial = valoracio;
+        this.numVisualitzacions = 0;
     }
-
-
 
     public String getNom() {
         return titol;
-    }
-
-    public void setNom(String titol) {
-        this.titol = titol;
     }
 
     public String getDescripcio() {
         return descripcio;
     }
 
-    public void setDescripcio(String descripcio) {
-        this.descripcio = descripcio;
-    }
-
-    public float getValoracioImdb() {
-        return valoracioImdb;
-    }
-
-    public List<Tematica> getLlistaTematiques() {
-        return llistaTematiques;
-    }
-
-    public void setLlistaTematiques(List<Tematica> llistaTematiques) {
-        this.llistaTematiques = llistaTematiques;
-    }
-
-    public String getIdioma() {
-        return idioma;
+    public int getAnyEstrena() {
+        return anyEstrena;
     }
 
     public int getDurada() {
         return durada;
     }
 
-    public String getAnyEstrena() {
-        return estrena;
+    public void setTitol(String titol) {
+        this.titol = titol;
     }
 
-    public Object getTitol() { return titol;}
-
-    public void addTematica(String nomTematica)  {
-        if ((findTematica(nomTematica)) == null) {
-            Tematica t = new Tematica(nomTematica);
-            llistaTematiques.add(t);
-        }
+    public void valorar(int punts) {
+        puntuacio = (puntuacio * numVotants + punts) / (numVotants + 1);
+        numVotants++;
     }
 
-    private Object findTematica(String nomTematica) {
-        for (Tematica t : llistaTematiques) {
-            if (t.getNomTematica().equals(nomTematica)) return t;
-        }
-        return null;
+    public void addVisualitzacio() {
+        numVisualitzacions++;
+    }
+
+    public int getNumVisualitzacions() {
+        return numVisualitzacions;
+    }
+
+    public String getURL() {
+        return url;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public float getValoracioInicial() {
+        return valoracioInicial;
     }
 }

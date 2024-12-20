@@ -1,51 +1,44 @@
 package ub.edu.model.cataleg;
 
-public class Pelicula extends ContingutDigital {
 
+import ub.edu.model.Carteras.CarteraTema;
+
+public class Pelicula extends  ContingutDigital{
     private String url;
-    private float valoracioInicial;
+    private String idioma;
+    private CarteraTema llistaTematiques;
 
-    public Pelicula(String titol, int estrena, int durada) {
-        super(titol, estrena);
-        this.durada = durada;
+    public Pelicula(String nom, int estrena, int durada) {
+        super(nom, estrena, durada);
+        llistaTematiques = new CarteraTema();
     }
 
-    public Pelicula(String titol, String descripcio, String url, int estrena, String idioma, int durada) {
-        super(titol, estrena, descripcio);
+    public Pelicula(String titol, String descripcio) {
+        super(titol, descripcio);
         this.url = url;
         this.idioma = idioma;
-        this.durada = durada;
-
-    }
-
-    public Pelicula(String titol, String descripcio, String url, int estrena, String idioma, float valoracio) {
-        super(titol, estrena, descripcio);
-        this.url = url;
-        this.idioma = idioma;
-        this.setValoracioInicial(valoracio);
+        llistaTematiques = new CarteraTema();
     }
 
     public Pelicula(String titol, String descripcio, String url, int estrena, String idioma, int durada, float valoracio) {
-        super(titol, estrena, descripcio, durada);
+        //Per tal de no modificar el step posant la quantitat de gent que ha votat per tal
+        // d'obtenir la valoració, posem un número alt de votants fixe (100)
+        super(titol, estrena, descripcio, durada, valoracio, 100);
         this.url = url;
         this.idioma = idioma;
-        this.setValoracioInicial(valoracio);
+        llistaTematiques = new CarteraTema();
     }
 
-    public  boolean equals (Pelicula p) {
-        return this.getTitol().equals(p.getNom());
+    public void addTematica(Tematica t) {
+        this.llistaTematiques.add(t);
     }
 
-    public String getURL() {
-        return url;
+    public CarteraTema getTematiques() {
+        return llistaTematiques;
     }
 
-    public float getValoracioInicial() {
-        return valoracioInicial;
-    }
-
-    public void setValoracioInicial(float valoracioInicial) {
-        this.valoracioInicial = valoracioInicial;
+    public void setTitol(String titol) {
+        super.setTitol(titol);
     }
 
 }

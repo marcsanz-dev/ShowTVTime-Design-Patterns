@@ -11,7 +11,6 @@ import java.util.TreeSet;
 
 public class Serie extends ContingutDigital {
 
-    private String imatgeUrl;
     private List<Temporada> llistaTemporades;
 
     public Serie(String nomSerie, String idioma, int anyEstrena) {
@@ -26,21 +25,19 @@ public class Serie extends ContingutDigital {
     }
 
     public Serie(String nomSerie, String descripcio, String url, int anyEstrena, String idioma) {
-        super(nomSerie, anyEstrena, descripcio);
-        this.imatgeUrl = url;
+        super(nomSerie, anyEstrena, descripcio, url);
         llistaTemporades = new ArrayList<Temporada>();
     }
 
     public Serie(String nomSerie, String descripcio, String url, int anyEstrena, String idioma, int durada) {
-        super(nomSerie, anyEstrena, descripcio);
+        super(nomSerie, anyEstrena, descripcio, url);
         llistaTemporades = new ArrayList<Temporada>();
-        this.imatgeUrl = url;
     }
 
     public Serie(String nomSerie, String descripcio, String url, int anyEstrena, String idioma, int durada, float valoracioImdb) {
         super(nomSerie, descripcio, url, anyEstrena, idioma, durada, valoracioImdb);
         llistaTemporades = new ArrayList<Temporada>();
-        this.imatgeUrl = url;
+
     }
 
     public void addTemporada(Temporada temp) {
@@ -80,9 +77,6 @@ public class Serie extends ContingutDigital {
         }
         if (trobat) return llistaTemporades.get(i);
         else return null;
-    }
-    public String getImatgeUrl() {
-        return imatgeUrl;
     }
 
     public Iterable<String> visualitzarTemporadesSerie() throws Exception {

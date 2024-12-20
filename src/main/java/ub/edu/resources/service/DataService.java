@@ -123,7 +123,7 @@ public class DataService {
         List<Episodi> episodis = daoEpisodi.getAll();
         for (Temporada temporada: temporades) {
             for (Episodi episodi: episodis) {
-                if (episodi.getNomSerie().equals(temporada.getNomSerie()) && episodi.getNumTemporada() == (temporada.getNumTemporada())) {
+                if (episodi.getNom().equals(temporada.getNomSerie()) && episodi.getNumTemporada() == (temporada.getNumTemporada())) {
                     temporada.addEpisodi(episodi);
                 }
             }
