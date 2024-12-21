@@ -1,6 +1,6 @@
 package ub.edu.model.Strategies.AccessStrategy;
 
-import ub.edu.model.GrupInteres;
+import ub.edu.model.cataleg.GrupInteres;
 import ub.edu.model.Persona;
 
 public class CodeAccessStrategy implements AccessStrategy {
@@ -13,7 +13,7 @@ public class CodeAccessStrategy implements AccessStrategy {
 
     @Override
     public boolean executeAccess(Persona follower, GrupInteres group) {
-        if (code != null && group.validateCode(code)) {
+        if (code != null && group.getCodiAcces().equals(code)) {
             follower.memberGrup(group);
             follower.addReputation(150);
             return true;
