@@ -64,13 +64,14 @@ public class Persona {
         return watchNext;
     }
 
+    /*
     public boolean ha_vist(ContingutDigital contingut){
         return watchedHistory.containsKey(contingut.getNom());
     }
 
     public void deleteWatchedHistory(ContingutDigital contingut){
         watchedHistory.delete(contingut);
-    }
+    }*/
 
     public void esborrarWatchedHistory(){
         watchedHistory = new WatchedHistory();
@@ -83,11 +84,11 @@ public class Persona {
     public void addReputation(int reputation) {
         this.reputation += reputation;
     }
-
+    /*
     public void addWatchedHistory(ContingutDigital contingut){
         contingut.addVisualitzacio();
         watchedHistory.add(contingut);
-    }
+    }*/
 
     public void addWatchNext(ContingutDigital contingut){
         watchNext.add(contingut);

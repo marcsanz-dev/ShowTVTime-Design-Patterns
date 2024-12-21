@@ -2,10 +2,12 @@ package ub.edu.model.cataleg;
 
 import ub.edu.model.Carteras.CarteraTema;
 
+import java.util.List;
+
 public abstract class ContingutDigital {
     private String titol;
     private String descripcio;
-    private String anyEstrena;
+    private int  anyEstrena;
     private int durada;
     private float puntuacio;
     private int numVotants;
@@ -32,7 +34,7 @@ public abstract class ContingutDigital {
         this.tematiques = new CarteraTema();
     }
 
-    public ContingutDigital(String titol, String descripcio, String estrena, int durada) {
+    public ContingutDigital(String titol, String descripcio, int estrena, int durada) {
         this.titol = titol;
         this.descripcio = descripcio;
         this.anyEstrena = estrena;
@@ -41,7 +43,7 @@ public abstract class ContingutDigital {
         this.tematiques = new CarteraTema();
     }
 
-    public ContingutDigital(String titol, String descripcio, String estrena, int durada, float puntuacio, String url) {
+    public ContingutDigital(String titol, String descripcio, int estrena, int durada, float puntuacio, String url) {
         this.titol = titol;
         this.descripcio = descripcio;
         this.anyEstrena = estrena;
@@ -52,7 +54,7 @@ public abstract class ContingutDigital {
         this.tematiques = new CarteraTema();
     }
 
-    public ContingutDigital(String titol, String estrena, int durada) {
+    public ContingutDigital(String titol, int estrena, int durada) {
         this.titol = titol;
         this.durada = durada;
         this.anyEstrena = estrena;
@@ -60,7 +62,7 @@ public abstract class ContingutDigital {
         this.tematiques = new CarteraTema();
     }
 
-    public ContingutDigital(String titol, String estrena, String idioma) {
+    public ContingutDigital(String titol, int estrena, String idioma) {
         this.titol = titol;
         this.idioma = idioma;
         this.anyEstrena = estrena;
@@ -68,7 +70,7 @@ public abstract class ContingutDigital {
         this.tematiques = new CarteraTema();
     }
 
-    public ContingutDigital(String titol, String anyEstrena, String descripcio, String url){
+    public ContingutDigital(String titol, int anyEstrena, String descripcio, String url){
         this.titol = titol;
         this.anyEstrena = anyEstrena;
         this.descripcio = descripcio;
@@ -77,7 +79,7 @@ public abstract class ContingutDigital {
         this.tematiques = new CarteraTema();
     }
 
-    public ContingutDigital(String titol, String anyEstrena, String descripcio, int durada, float puntuacio, int numVotants, String url, String idioma) {
+    public ContingutDigital(String titol, int anyEstrena, String descripcio, int durada, float puntuacio, int numVotants, String url, String idioma) {
         this.titol = titol;
         this.anyEstrena = anyEstrena;
         this.descripcio = descripcio;
@@ -97,7 +99,7 @@ public abstract class ContingutDigital {
         this.tematiques = new CarteraTema();
     }
 
-    public ContingutDigital(String nom, String descripcio, String url, String anyEstrena, String idioma, int durada, float valoracio) {
+    public ContingutDigital(String nom, String descripcio, String url, int anyEstrena, String idioma, int durada, float valoracio) {
         this.titol = nom;
         this.descripcio = descripcio;
         this.url = url;
@@ -117,11 +119,11 @@ public abstract class ContingutDigital {
         return descripcio;
     }
 
-    public String getAnyEstrena() {
+    public int getAnyEstrena() {
         return anyEstrena;
     }
 
-    public void setAnyEstrena(String anyEstrena) {
+    public void setAnyEstrena(int anyEstrena) {
         this.anyEstrena = anyEstrena;
     }
 
@@ -163,8 +165,8 @@ public abstract class ContingutDigital {
         this.tematiques.add(t);
     }
 
-    public CarteraTema getTematiques() {
-        return tematiques;
+    public List<Tematica> getTematiques() {
+        return tematiques.getTemes();
     }
 
 }

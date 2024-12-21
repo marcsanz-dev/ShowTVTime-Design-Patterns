@@ -6,7 +6,7 @@ public class Episodi extends ContingutDigital {
     private int numTemporada;
     private int numEpisodi;
 
-    public Episodi(String nomSerie, int numTemporada, int numEpisodi, String titolEpisodi, String descripcio, String anyEstrena, int durada, String url, float valoracioInicial) {
+    public Episodi(String nomSerie, int numTemporada, int numEpisodi, String titolEpisodi, String descripcio, int anyEstrena, int durada, String url, float valoracioInicial) {
         super(titolEpisodi, descripcio, anyEstrena, durada, valoracioInicial, url);
         this.nomSerie = nomSerie;
         this.numTemporada = numTemporada;

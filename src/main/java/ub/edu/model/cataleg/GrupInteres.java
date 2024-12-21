@@ -1,6 +1,8 @@
 package ub.edu.model.cataleg;
 
 
+import ub.edu.model.Joc;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +16,7 @@ public class GrupInteres {
 
     private String nomGrupInteres;
     private String descripcioGrupInteres;
-
+    private Joc joc;
     private String codiAcces;
 
     public GrupInteres(String nomGrupInteres, String descripcioGrupInteres) {
@@ -89,6 +91,10 @@ public class GrupInteres {
     }
     public String getCodiAcces() {
         return codiAcces;
+    }
+
+    public Joc getJoc() {
+        return joc;
     }
 
 }

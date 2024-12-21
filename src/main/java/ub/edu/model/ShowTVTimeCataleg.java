@@ -3,7 +3,11 @@ package ub.edu.model;
 import ub.edu.model.Carteras.CarteraContingutDigital;
 import ub.edu.model.Carteras.CarteraGrupInteres;
 import ub.edu.model.Carteras.CarteraTema;
-import ub.edu.model.cataleg.*;
+import ub.edu.model.Strategies.ListStrategy.ContingutDigital.ContingutLlistar;
+import ub.edu.model.Strategies.ListStrategy.Pelicula.LlistarPelisByEstrenaStrategy;
+import ub.edu.model.Strategies.ListStrategy.Pelicula.LlistarPelisByNameStrategy;
+import ub.edu.model.Strategies.ListStrategy.Pelicula.LlistarPelisByTematicaStrategy;
+import ub.edu.model.Strategies.ListStrategy.Pelicula.PeliculaLlistar;
 import ub.edu.model.cataleg.*;
 import ub.edu.model.exceptions.NotAvailableGroupException;
 import ub.edu.model.exceptions.NotAvailableMovieException;
@@ -15,12 +19,16 @@ public class ShowTVTimeCataleg {
     private CarteraContingutDigital llistaContingutDigital;
     private CarteraTema llistaTematiques;
     private CarteraGrupInteres llistaGrupsInteres;
+    private PeliculaLlistar peliculaLlistar;
+    private ContingutLlistar contingutLlistar;
 
 
     public ShowTVTimeCataleg(){
         llistaContingutDigital = new CarteraContingutDigital();
         llistaTematiques = new CarteraTema();
         llistaGrupsInteres = new CarteraGrupInteres();
+        peliculaLlistar = new PeliculaLlistar();
+        contingutLlistar = new ContingutLlistar();
     }
     // Creador el ImUB
 
@@ -131,35 +139,25 @@ public class ShowTVTimeCataleg {
     }
 
     public List<HashMap<Object, Object>> getAllPeliculesPerEstrena() {
-        List<Pelicula> sortedList = llistaPelicules;
-        sortedList.sort(new Comparator<Pelicula>() {
-            public int compare(Pelicula a1, Pelicula a2) {
-                return (a2.getAnyEstrena().compareTo(a1.getAnyEstrena()));
-            }
-        });
-        return getLlistaNomsPelicules(sortedList);
+        peliculaLlistar.setStrategy(new LlistarPelisByEstrenaStrategy());
+        return getLlistaNomsPelicules(peliculaLlistar.executeList(llistaContingutDigital.getPelicules()));
     }
 
     public List<HashMap<Object, Object>> getAllPeliculesPerNom() {
-        List<Pelicula> sortedList = llistaPelicules;
-        sortedList.sort(new Comparator<Pelicula>() {
-            public int compare(Pelicula a1, Pelicula a2) {
-                return (a1.getNom().compareTo(a2.getNom()));
-            }
-        });
-        return getLlistaNomsPelicules(sortedList);
+        peliculaLlistar.setStrategy(new LlistarPelisByNameStrategy());
+        return getLlistaNomsPelicules(peliculaLlistar.executeList(llistaContingutDigital.getPelicules()));
     }
 
-    public void addPelicula(String nom,  String estrena, int durada) {
+    public void addPelicula(String nom,  int estrena, int durada) {
         Pelicula p = new Pelicula(nom, estrena, durada);
         llistaContingutDigital.add(p);
     }
 
-    public void addSerie(String nom,  String estrena) {
+    public void addSerie(String nom,  int estrena) {
         Serie s = new Serie(nom, estrena);
         llistaContingutDigital.add(s);
     }
-    public void addSerie(String nomSerie, String descripcio, String url, String anyEstrena,
+    public void addSerie(String nomSerie, String descripcio, String url, int anyEstrena,
                             String idioma, int durada) {
         Serie s = new Serie(nomSerie, descripcio, url, anyEstrena, idioma, durada);
         llistaContingutDigital.add(s);
@@ -207,7 +205,7 @@ public class ShowTVTimeCataleg {
         llistaTematiques.add(t);
     }
 
-    public void addPelicula(String titol, String descripcio, String url, String estrena, String idioma, int durada, float valoracio) {
+    public void addPelicula(String titol, String descripcio, String url, int estrena, String idioma, int durada, float valoracio) {
         Pelicula p = new Pelicula(titol, descripcio, url, estrena, idioma, durada, valoracio);
         llistaContingutDigital.add(p);
     }
@@ -222,23 +220,8 @@ public class ShowTVTimeCataleg {
     }
 
     public List<HashMap<Object, Object>> visualitzarPelisPerTematica(String nomTematica) throws Exception{
-
-        List<Pelicula> sortedList = new ArrayList<>();
-        for (Pelicula p : llistaPelicules) {
-            List<Tematica> tematiques = p.getLlistaTematiques();
-
-            for (Tematica t : tematiques) {
-                if (t.getNomTematica().equals(nomTematica)) {
-                    sortedList.add(p);
-                }
-            }
-        }
-        sortedList.sort(new Comparator<Pelicula>() {
-            public int compare(Pelicula a1, Pelicula a2) {
-                return (a1.getNom().compareTo(a2.getNom()));
-            }
-        });
-        return getLlistaNomsPelicules(sortedList);
+        peliculaLlistar.setStrategy(new LlistarPelisByTematicaStrategy(nomTematica));
+        return getLlistaNomsPelicules(peliculaLlistar.executeList(llistaContingutDigital.getPelicules()));
 
     }
 

@@ -12,10 +12,17 @@ public class LlistarContingutByDateStrategy implements ListStrategy<ContingutDig
     @Override
     public List<ContingutDigital> executeList(List<ContingutDigital> contingutDigitals) {
         List<ContingutDigital> llistaCombinada = new ArrayList<>(contingutDigitals);
-        // Ordenar por anyPrimeraEstrena (descendente)
-        llistaCombinada.sort(new Comparator<ContingutDigital>() {
-            public int compare(ContingutDigital a1, ContingutDigital a2) {
-                return (a2.getAnyEstrena().compareTo(a1.getAnyEstrena()));
+        llistaCombinada.sort(new Comparator<Object>() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                int any1 = 0, any2 = 0;
+
+                any1 = ((ContingutDigital) o1).getAnyEstrena();
+
+                any2 = ((ContingutDigital) o2).getAnyEstrena();
+
+                // Ordenar en orden ascendente (de más nuevo (grande) a más viejo (pequeño)
+                return Integer.compare(any2, any1);
             }
         });
 
