@@ -1,35 +1,28 @@
 package ub.edu.model.Strategies.ListStrategy.ContingutDigital;
 
-import ub.edu.model.ContingutDigital;
-import ub.edu.model.Pelicula;
+import ub.edu.model.cataleg.*;
 import ub.edu.model.Strategies.ListStrategy.ListStrategy;
-import ub.edu.model.exceptions.NotAvailableMoviesException;
+import ub.edu.model.exceptions.*;
 
 import java.util.*;
 
 public class LlistarPelisByEstrenaStrategy implements ListStrategy<ContingutDigital> {
 
     @Override
-    public Iterable<String> executeList(List<ContingutDigital> contingutDigitals) {
-        List<String> pelisDisponibles = new ArrayList<>();
-
-        List<Pelicula> sortedList = new ArrayList<>();
+    public List<ContingutDigital> executeList(List<ContingutDigital> contingutDigitals) {
+        List<ContingutDigital> sortedList = new ArrayList<>();
         for (ContingutDigital c : contingutDigitals) {
             if(c instanceof Pelicula){
-                sortedList.add((Pelicula) c);
+                sortedList.add( c);
             }
         }
-        sortedList.sort(new Comparator<Pelicula>() {
-            public int compare(Pelicula a1, Pelicula a2) {
-                return (Integer.compare(a2.getAnyPrimeraEmissio(), a1.getAnyPrimeraEmissio()));
+        sortedList.sort(new Comparator<ContingutDigital>() {
+            public int compare(ContingutDigital a1, ContingutDigital a2) {
+                return (a2.getAnyEstrena().compareTo(a1.getAnyEstrena()));
             }
         });
 
-        for (Pelicula p : sortedList) {
-            pelisDisponibles.add(p.getTitol());
-        }
-        if(pelisDisponibles.isEmpty()) throw new NotAvailableMoviesException();
-        return pelisDisponibles;
-
+        if(sortedList.isEmpty()) throw new NotAvailableMoviesException();
+        return sortedList;
     }
 }

@@ -1,6 +1,6 @@
 package ub.edu.model.Strategies.AccessStrategy;
 
-import ub.edu.model.GrupInteres;
+import ub.edu.model.cataleg.GrupInteres;
 import ub.edu.model.Persona;
 
 public class QuestionAccessStrategy implements AccessStrategy {

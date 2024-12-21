@@ -2,24 +2,27 @@ package ub.edu.model.Strategies.ListStrategy.Temporada;
 
 import ub.edu.controller.MessagesCAT;
 import ub.edu.model.Strategies.ListStrategy.ListStrategy;
-import ub.edu.model.Temporada;
-import ub.edu.model.exceptions.NotAvailableException;
+import ub.edu.model.cataleg.ContingutDigital;
+import ub.edu.model.cataleg.Pelicula;
+import ub.edu.model.cataleg.Temporada;
 
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
-public class LlistarTemporadesStrategy implements ListStrategy<Temporada> {
+public class LlistarTemporadesStrategy implements ListStrategy<ContingutDigital> {
     @Override
-    public Iterable<String> executeList(List<Temporada> temporades){
-        SortedSet<String> temporadesDisponibles = new TreeSet<>();
-        if (temporades.isEmpty()) {
-            temporadesDisponibles.add(MessagesCAT.ShowWithoutSeasons.getMessage());
-        } else {
-            for (Temporada t : temporades) {
-                temporadesDisponibles.add(String.valueOf(t.getNumTemporada()));
+    public List<ContingutDigital> executeList(List<ContingutDigital> temporades){
+        List<ContingutDigital> sortedList = new ArrayList<>();
+
+        for (ContingutDigital c : temporades) {
+            if(c instanceof Pelicula){
+                sortedList.add(c);
             }
         }
-        return temporadesDisponibles;
+        sortedList.sort(new Comparator<ContingutDigital>() {
+            public int compare(ContingutDigital a1, ContingutDigital a2) {
+                return (a1.getNom().compareTo(a2.getNom()));
+            }
+        });
+        return sortedList;
     }
 }

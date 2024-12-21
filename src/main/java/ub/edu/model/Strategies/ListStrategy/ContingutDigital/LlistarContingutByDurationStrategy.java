@@ -1,6 +1,6 @@
 package ub.edu.model.Strategies.ListStrategy.ContingutDigital;
 
-import ub.edu.model.ContingutDigital;
+import ub.edu.model.cataleg.ContingutDigital;
 import ub.edu.model.Strategies.ListStrategy.ListStrategy;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 public class LlistarContingutByDurationStrategy implements ListStrategy<ContingutDigital> {
 
     @Override
-    public Iterable<String> executeList(List<ContingutDigital> contingutDigitals) {
+    public List<ContingutDigital> executeList(List<ContingutDigital> contingutDigitals) {
         List<ContingutDigital> llistaCombinada = new ArrayList<>(contingutDigitals);
         llistaCombinada.sort(new Comparator<Object>() {
             @Override
@@ -26,12 +26,6 @@ public class LlistarContingutByDurationStrategy implements ListStrategy<Contingu
             }
         });
 
-        // Crear una lista de títulos ordenados
-        List<String> titolsOrdenats = new ArrayList<>();
-        for (ContingutDigital obj : llistaCombinada) {
-            titolsOrdenats.add( obj.getTitol());
-        }
-
-        return titolsOrdenats;
+        return llistaCombinada;
     }
 }

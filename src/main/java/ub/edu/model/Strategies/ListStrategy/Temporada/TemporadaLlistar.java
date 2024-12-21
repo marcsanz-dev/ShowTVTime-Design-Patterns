@@ -1,15 +1,16 @@
 package ub.edu.model.Strategies.ListStrategy.Temporada;
 
 import ub.edu.model.Strategies.ListStrategy.ListStrategy;
-import ub.edu.model.Temporada;
+import ub.edu.model.cataleg.ContingutDigital;
+import ub.edu.model.cataleg.Temporada;
 import java.util.List;
 
 public class TemporadaLlistar {
-    private ListStrategy<Temporada> strategy;
+    private ListStrategy<ContingutDigital> strategy;
 
-    public void setStrategy(ListStrategy<Temporada> strategy) { this.strategy = strategy;}
+    public void setStrategy(ListStrategy<ContingutDigital> strategy) { this.strategy = strategy;}
 
-    public Iterable<String> executeList(List<Temporada> temporadas) {
+    public List<ContingutDigital> executeList(List<ContingutDigital> temporadas) {
         if (strategy == null) {
             throw new IllegalStateException("No se ha definido una estrategia");
         }

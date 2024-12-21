@@ -1,28 +1,24 @@
 package ub.edu.model.Strategies.ListStrategy.Episodi;
 
-import ub.edu.model.Episodi;
+import ub.edu.model.cataleg.ContingutDigital;
+import ub.edu.model.cataleg.Episodi;
 import ub.edu.model.Strategies.ListStrategy.ListStrategy;
-import ub.edu.model.exceptions.NotAvailableException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class LlistarEpisodisStrategy implements ListStrategy<Episodi> {
+public class LlistarEpisodisStrategy implements ListStrategy<ContingutDigital> {
 
     @Override
-    public Iterable<String> executeList(List<Episodi> episodis) {
-        List<String> episodisDisponibles = new ArrayList<>();
+    public List<ContingutDigital> executeList(List<ContingutDigital> episodis) {
+        List<ContingutDigital> episodisSorted = new ArrayList<>(episodis);
 
-        episodis.sort(new Comparator<Episodi>() {
-            public int compare(Episodi a1, Episodi a2) {
-                return (Integer.compare(a1.getNumEpisodi(), a2.getNumEpisodi()));
+        episodisSorted.sort(new Comparator<ContingutDigital>() {
+            public int compare(ContingutDigital a1, ContingutDigital a2) {
+                return (Integer.compare(((Episodi)a1).getNumEpisodi(), ((Episodi)a2).getNumEpisodi()));
             }
         });
 
-        for (Episodi e : episodis) {
-            episodisDisponibles.add(e.getTitolEpisodi());
-        }
-
-        return episodisDisponibles;
+        return episodisSorted;
     }
 }
