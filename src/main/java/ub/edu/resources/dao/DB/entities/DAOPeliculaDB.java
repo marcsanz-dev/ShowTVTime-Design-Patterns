@@ -77,7 +77,7 @@ public class DAOPeliculaDB implements DAOPelicula {
                 """,
                 pelicula.getNom(),
                 pelicula.getDescripcio(),
-                pelicula.getURL(),
+                pelicula.getUrl(),
                 pelicula.getAnyEstrena(),
                 pelicula.getIdioma(),
                 pelicula.getDurada(),

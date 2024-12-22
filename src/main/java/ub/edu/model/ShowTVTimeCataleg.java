@@ -120,7 +120,7 @@ public class ShowTVTimeCataleg {
     }
 
     public boolean esPelicula(String nomContingut) {
-        return llistaContingutDigital.containsKey(nomContingut);
+        return llistaContingutDigital.esPelicula(nomContingut);
     }
 
     public Temporada findTemporada(String nomSerie, int numTemporada) {

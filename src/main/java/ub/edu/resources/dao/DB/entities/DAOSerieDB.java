@@ -77,11 +77,11 @@ public class DAOSerieDB implements DAOSerie {
                 """,
                 serie.getNom(),
                 serie.getDescripcio(),
-                serie.getImatgeUrl(),
+                serie.getUrl(),
                 serie.getAnyEstrena(),
                 serie.getIdioma(),
                 serie.getDurada(),
-                serie.getValoracioImdb()
+                serie.getValoracioInicial()
         );
         try (
                 PreparedStatement statement = this.connection.prepareStatement(sql);

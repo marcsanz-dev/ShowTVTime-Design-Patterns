@@ -56,7 +56,7 @@ public class EscenaSerieDetalls extends Escena{
             data_text_descripcio.setText("Descripcio: " + descripcio);
         }
         if(serieHashMap.get("dataAnyPrimeraEmissio")!=null){
-            String anyPrimeraEmissio_str = (String) serieHashMap.get("dataAnyPrimeraEmissio");
+            String anyPrimeraEmissio_str = String.valueOf(serieHashMap.get("dataAnyPrimeraEmissio"));
             anyPrimeraEmissio = Integer.parseInt(anyPrimeraEmissio_str);
             data_text_dataAnyPrimeraEmissio.setText("Any Primera Emissio: " + anyPrimeraEmissio);
         }

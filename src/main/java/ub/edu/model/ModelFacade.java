@@ -7,10 +7,14 @@ import java.util.*;
 public class ModelFacade {
     private ShowTVTimeCataleg showTVTimeCataleg;
     private ShowTVTimePersones showTVTimePersones;
+    private ShowTVTimeWatchedHistory showTVTimeWatchedHistory;
+    private ShowTVTimeWatchNext showTVTimeWatchNext;
 
-    public ModelFacade(ShowTVTimeCataleg showCataleg, ShowTVTimePersones showPersones) {
+    public ModelFacade(ShowTVTimeCataleg showCataleg, ShowTVTimePersones showPersones, ShowTVTimeWatchedHistory showWatchedHistory, ShowTVTimeWatchNext showWatchNext) {
         this.showTVTimeCataleg = showCataleg;
         this.showTVTimePersones = showPersones;
+        this.showTVTimeWatchedHistory = showWatchedHistory;
+        this.showTVTimeWatchNext = showWatchNext;
     }
 
     // Mètodes de login
@@ -129,7 +133,7 @@ public class ModelFacade {
         // TODO: Pràctica 4: Cal afegir el contingut nomContingut a la WatchedHistory del client amb correu correu
         Persona p = showTVTimePersones.findPersonaCartera(correu);
         ContingutDigital c = showTVTimeCataleg.findContingutDigital(nomContingut);
-        p.getWatchedHistory().add(nomContingut, c, data);
+        showTVTimeWatchedHistory.add(correu, c, data);
         System.out.println("Model Facade: addToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
         return true;
     }
@@ -138,7 +142,7 @@ public class ModelFacade {
         // TODO: Pràctica 4: Cal afegir el contingut nomContingut a la WatchedHistory del client amb correu correu
         Persona p = showTVTimePersones.findPersonaCartera(correu);
         ContingutDigital c = showTVTimeCataleg.findTemporada(nomContingut, numTemporada);
-        p.getWatchedHistory().add(nomContingut, c, data);
+        showTVTimeWatchedHistory.add(correu, c, data);
         System.out.println("Model Facade: addTemporadaToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
         return true;
     }
@@ -147,19 +151,40 @@ public class ModelFacade {
         // TODO: Pràctica 4: Cal afegir el contingut nomContingut a la WatchedHistory del client amb correu correu
         Persona p = showTVTimePersones.findPersonaCartera(correu);
         ContingutDigital c = showTVTimeCataleg.findEpisodi(nomContingut, numTemporada, numEpisodi);
-        p.getWatchedHistory().add(nomContingut, c, data);
+        showTVTimeWatchedHistory.add(correu, c, data);
+        System.out.println("Model Facade: addEpisodiToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
+        return true;
+    }
+
+    public boolean addToWatchNextList(String nomContingut, int numTemporada, int numEpisodi, String correu, String data) throws Exception {
+        Persona p = showTVTimePersones.findPersonaCartera(correu);
+        ContingutDigital c = showTVTimeCataleg.findEpisodi(nomContingut, numTemporada, numEpisodi);
+        showTVTimeWatchNext.add(correu, c, data);
         System.out.println("Model Facade: addEpisodiToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
         return true;
     }
 
     public List<HashMap<Object, Object>> getWatchedHistory(String correu) {
-        //List<HashMap<Object, Object>> wishList = new ArrayList<>();
+        List<HashMap<Object, Object>> wishList = new ArrayList<>();
         // TODO: Pràctica 4: Cal retornar els continguts de la watchedHistory del client amb correu correu
 
         Persona p = showTVTimePersones.findPersonaCartera(correu);
 
-        return p.getWatchedHistory().getWatchedHistory();
-        //System.out.println("Model Facade: getWatchedHistory -> correu: " + correu );
+        System.out.println("Model Facade: getWatchedHistory -> correu: " + correu );
+        List<ContingutDigital> cd = showTVTimeWatchedHistory.getWatchedHistory(correu);
+
+
+        for (ContingutDigital c : cd) {
+            if(c instanceof Serie){
+                wishList.add(getDetallsSerie(c.getNom()));
+            } else if (c instanceof Pelicula){
+                wishList.add(getDetallsPelicula(c.getNom()));
+            } else if (c instanceof Episodi){
+                Episodi e = (Episodi) c;
+                wishList.add(getEpisodiDetalls(e.getNom(), e.getNumTemporada(), e.getNumEpisodi()));
+            }
+        }
+        return wishList;
     }
 
 

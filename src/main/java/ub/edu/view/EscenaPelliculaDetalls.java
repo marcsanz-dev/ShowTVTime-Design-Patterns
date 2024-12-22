@@ -55,7 +55,7 @@ public class EscenaPelliculaDetalls extends Escena{
             data_text_descripcio.setText("Descripcio: " + descripcio);
         }
         if(pelliculaHashMap.get("dataAnyPrimeraEmissio")!=null){
-            String anyPrimeraEmissio_str = (String) pelliculaHashMap.get("dataAnyPrimeraEmissio");
+            String anyPrimeraEmissio_str = String.valueOf(pelliculaHashMap.get("dataAnyPrimeraEmissio"));
             anyPrimeraEmissio = Integer.parseInt(anyPrimeraEmissio_str);
             data_text_dataAnyPrimeraEmissio.setText("Any Primera Emissio: " + anyPrimeraEmissio);
         }

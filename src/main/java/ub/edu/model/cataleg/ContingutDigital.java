@@ -115,6 +115,10 @@ public abstract class ContingutDigital {
         return titol;
     }
 
+    public void setNom(String nom) {
+        this.titol = nom;
+    }
+
     public String getDescripcio() {
         return descripcio;
     }

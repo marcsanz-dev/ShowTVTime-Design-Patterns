@@ -138,4 +138,8 @@ public class CarteraContingutDigital implements CarteraContingutDigitalInterface
         return null;
     }
 
+    public boolean esPelicula(String titol) {
+        return pelicules.containsKey(titol);
+    }
+
 }

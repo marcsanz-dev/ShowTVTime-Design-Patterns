@@ -3,6 +3,7 @@ package ub.edu.model.Carteras;
 import ub.edu.model.cataleg.Tematica;
 import ub.edu.model.exceptions.NotFoundException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,8 @@ public class CarteraTema implements CarteraTemaInterface{
     }
 
     public List<Tematica> getTemes() {
-        return (List<Tematica>) llistaTemes.values();
+        List<Tematica> listaTemas = new ArrayList<>(llistaTemes.values());
+        return listaTemas;
     }
 
 

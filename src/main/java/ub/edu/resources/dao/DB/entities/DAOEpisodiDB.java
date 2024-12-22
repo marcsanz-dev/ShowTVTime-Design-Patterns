@@ -47,7 +47,7 @@ public class DAOEpisodiDB implements DAOEpisodi {
                                 rs.getInt("numEpisodi"),
                                 rs.getString("nom"),
                                 rs.getString("descripcio"),
-                                rs.getString("anyEstrena"),
+                                rs.getInt("anyEstrena"),
                                 rs.getInt("duracio"),
                                 rs.getString("url"),
                                 rs.getFloat("valoracio")

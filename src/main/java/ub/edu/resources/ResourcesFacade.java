@@ -180,6 +180,7 @@ public class ResourcesFacade {
             // nom persona es (p.getElement1().toString(),
             // nom pelicula es p.getElement2().toString(),
             // data es p.getElement3.toString());
+            modelFacade.addToWatchedHistoryList(p.getElement2().toString(), p.getElement1().toString(), p.getElement3().toString());
         }
 
         List<Quintet<String, String, Integer, Integer, String>> relacionsST2 = dataService.getAllRelacionsPersonaWatchedEpisodi();
@@ -191,7 +192,16 @@ public class ResourcesFacade {
             // num temporada es Integer.parseInt(p.getElement3().toString()
             // episodi es p.getElement4.toString()
             // data es p.getElement5.toString());
-
+            Serie s = showTVTimeCataleg.findSerie(p.getElement2().toString());
+            if(s.findEpisodi(Integer.parseInt(p.getElement3().toString()),
+                    Integer.parseInt(p.getElement4().toString()) + 1) != null){
+                modelFacade.addToWatchNextList(p.getElement2().toString(),Integer.parseInt(p.getElement3().toString()),
+                        Integer.parseInt(p.getElement4().toString()) + 1,
+                        p.getElement1().toString(),p.getElement5().toString());
+            }
+            modelFacade.addEpisodiToWatchedHistoryList(p.getElement2().toString(),
+                    Integer.parseInt(p.getElement3().toString()),Integer.parseInt(p.getElement4().toString()),
+                    p.getElement1().toString(),p.getElement5().toString());
         }
 
         List<Trio<String, String, String>> relacionsST3 = dataService.getAllRelacionsPersonaWatchedSerie();
@@ -201,6 +211,15 @@ public class ResourcesFacade {
             // TODO  Pràctica 4: Cal afegir la serie a la llista  de WatchedHistory de la persona
             // amb temporades i episodis
             // data es p.getElement3.toString());
+            modelFacade.addToWatchedHistoryList(serie.getNom(), persona.getName(), p.getElement3().toString());
+            List<Temporada> temporadas = serie.getTemporades();
+            for (Temporada temporada : temporadas) {
+                modelFacade.addTemporadaToWatchedHistoryList(serie.getNom(), temporada.getNumTemporada(), persona.getName(),p.getElement3().toString());
+                List<Episodi> episodis = temporada.getEpisodis();
+                for (Episodi episodi : episodis) {
+                    modelFacade.addEpisodiToWatchedHistoryList(serie.getNom(), temporada.getNumTemporada(), episodi.getNumEpisodi(), persona.getName(), p.getElement3().toString());
+                }
+            }
         }
 
         List<Quartet<String, String, Integer, String>> relacionsST4 = dataService.getAllRelacionsPersonaWatchedTemporada();
@@ -211,6 +230,7 @@ public class ResourcesFacade {
             // nom serie es p.getElement2().toString(),
             // num temporada es Integer.parseInt(p.getElement3().toString()
             // data es p.getElement4.toString());
+            modelFacade.addTemporadaToWatchedHistoryList(p.getElement2().toString(),Integer.parseInt(p.getElement3().toString()), p.getElement1().toString(),p.getElement4().toString());
         }
 
     }

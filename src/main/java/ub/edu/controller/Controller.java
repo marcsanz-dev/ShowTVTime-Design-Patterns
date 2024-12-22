@@ -15,13 +15,17 @@ public class Controller {
     private ModelFacade modelFacade;
     private ShowTVTimeCataleg showTVTimeCataleg;
     private ShowTVTimePersones showTVTimePersones;
+    private ShowTVTimeWatchedHistory showTVTimeWatchedHistory;
+    private ShowTVTimeWatchNext showTVTimeWatchNext;
     private SessionMemory sessionMemory;
 
     public Controller() {
         this.showTVTimeCataleg = new ShowTVTimeCataleg();
         this.showTVTimePersones = new ShowTVTimePersones();
+        this.showTVTimeWatchedHistory = new ShowTVTimeWatchedHistory();
+        this.showTVTimeWatchNext = new ShowTVTimeWatchNext();
 
-        this.modelFacade = new ModelFacade(showTVTimeCataleg, showTVTimePersones);
+        this.modelFacade = new ModelFacade(showTVTimeCataleg, showTVTimePersones, showTVTimeWatchedHistory, showTVTimeWatchNext);
         this.sessionMemory = new SessionMemory();
         resourcesFacade = new ResourcesFacade(showTVTimeCataleg,showTVTimePersones, this.modelFacade);
 
