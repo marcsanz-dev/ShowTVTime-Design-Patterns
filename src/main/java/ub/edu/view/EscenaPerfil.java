@@ -148,6 +148,25 @@ public class EscenaPerfil extends Escena {
 
     public void OnBtnMemberToFollow() {
         //TODO OPT Pràctica 4: Botó de deixar de ser membre del grup
+        if (tableMemberGroups.getSelectionModel().getSelectedItem() != null){
+            DataList selected = (DataList) tableMemberGroups.getSelectionModel().getSelectedItem();
+            String nomGrup = selected.getNom();
+            // TODO Pràctica 4: Cal implementar el mètode per
+            controller.getSessionMemory().setNomGrup(nomGrup);
+            controller.addFollower2Grup(controller.getSessionMemory().getCorreuPersona(), nomGrup);
+            // TODO Pràctica 4: cal també controlar les situacions possibles d'error i
+            // TODO mostrar-les per la finestra d'alertes
+
+            popularTaulaFollowingGroups();
+            popularTaulaMemberGroups();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Selecciona un grup");
+            alert.showAndWait();
+        }
     }
 
 

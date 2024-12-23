@@ -56,6 +56,9 @@ public class ShowTVTimePersonaGrup {
 
         if(this.nothingGroups.containsKey(username)) {
             this.nothingGroups.get(username).delete(grup);
+        } else if (this.memberGroups.containsKey(username)) {
+            this.memberGroups.get(username).delete(grup);
+
         }
     }
 

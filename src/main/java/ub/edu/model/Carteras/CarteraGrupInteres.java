@@ -46,7 +46,7 @@ public class CarteraGrupInteres implements CarteraGrupInteresInterface{
     }
 
     public void delete(GrupInteres grupInteres){
-        grupsInteres.remove(grupInteres);
+        grupsInteres.remove(grupInteres.getNom());
     }
 
 
