@@ -90,6 +90,12 @@ public class EscenaPerfil extends Escena {
         }
     }
 
+    public void refresh(){
+        popularTaulaAllGroups();
+        popularTaulaFollowingGroups();
+        popularTaulaMemberGroups();
+    }
+
     private void popularTaulaAllGroups() {
         List<HashMap<Object,Object>> listaObres = controller.visualitzarGrupsPerNom();
         nomAllGroupsColumna.setCellValueFactory(new PropertyValueFactory<DataList, String>("nom"));
@@ -178,6 +184,7 @@ public class EscenaPerfil extends Escena {
             Escena escena = EscenaFactory.INSTANCE.creaEscena("MenuAccessos-view", "Selecciona una opció");
             EscenaMenuAccessos escenaM = ((EscenaMenuAccessos)escena);
             escenaM.setController(controller);
+            escenaM.setEscenaPerfil(this);
             escenaM.start();
 
             popularTaulaFollowingGroups();

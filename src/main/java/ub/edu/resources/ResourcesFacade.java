@@ -377,8 +377,9 @@ public class ResourcesFacade {
 
             String nomGrup = p.getElement1().toString();
             String categoria = p.getElement2().toString();
-            String preguntaText = p.getElement3().toString();
 
+            GrupInteres grupInteres = showTVTimeCataleg.findGrupInteres(nomGrup);
+            grupInteres.addPregunta(pregunta);
         }
     }
 

@@ -13,11 +13,6 @@ public class CodeAccessStrategy implements AccessStrategy {
 
     @Override
     public boolean executeAccess(Persona follower, GrupInteres group) {
-        if (code != null && group.getCodiAcces().equals(code)) {
-            follower.memberGrup(group);
-            follower.addReputation(150);
-            return true;
-        }
-        return false;
+        return group.getCodiAcces().equals(code);
     }
 }

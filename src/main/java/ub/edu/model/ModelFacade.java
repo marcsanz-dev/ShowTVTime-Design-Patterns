@@ -1,7 +1,14 @@
 package ub.edu.model;
 
+import ub.edu.model.Strategies.AccessStrategy.CodeAccessStrategy;
+import ub.edu.model.Strategies.AccessStrategy.GroupAccess;
+import ub.edu.model.Strategies.AccessStrategy.QuestionAccessStrategy;
+import ub.edu.model.Strategies.AccessStrategy.RouletteAccessStrategy;
 import ub.edu.model.cataleg.*;
 import ub.edu.model.exceptions.*;
+import ub.edu.model.quizz.Pregunta;
+import ub.edu.model.quizz.Resposta;
+
 import java.util.*;
 
 public class ModelFacade {
@@ -137,6 +144,17 @@ public class ModelFacade {
         // TODO: Pràctica 4: Cal afegir el contingut nomContingut a la WatchedHistory del client amb correu correu
         ContingutDigital c = showTVTimeCataleg.findContingutDigital(nomContingut);
         showTVTimeWatchedHistory.add(correu, c, data);
+        if(c instanceof Serie){
+            List<Temporada> temporadas = ((Serie) c).getTemporades();
+            for (Temporada t : temporadas) {
+                List<Episodi> episodis = t.getEpisodis();
+                for (Episodi e : episodis) {
+                    if(showTVTimeWatchNext.has(correu, e)){
+                        showTVTimeWatchNext.remove(correu, e);
+                    }
+                }
+            }
+        }
         System.out.println("Model Facade: addToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
         return true;
     }
@@ -147,6 +165,9 @@ public class ModelFacade {
         List<Episodi> episodis = t.getEpisodis();
         for (Episodi e : episodis) {
             showTVTimeWatchedHistory.add(correu, e, data);
+            if(showTVTimeWatchNext.has(correu, e)){
+                showTVTimeWatchNext.remove(correu, e);
+            }
         }
 
         Serie s = showTVTimeCataleg.findSerie(nomContingut);
@@ -332,6 +353,18 @@ public class ModelFacade {
         // TODO Pràctica 4: Cal sol.licitar accés l'usuari "persona" com a membre del grup "grup" segons el tipusAcces
         // TODO Cal retornar a la hash per exemple, amb la clau "tirada" el resultat de la tirada
         // TODO OPT mirar el que cal retornar en el cas de l'accès per Quizz a la classe EscenaTriviaJoc.java
+
+        if(tipusAcces.equals("RULETA")){
+            HashMap<String, String> tirada = new HashMap<>();
+            tirada.put("tirada", String.valueOf((int) (Math.random() * 3) + 1));
+            return tirada;
+        } else if (tipusAcces.equals("QUIZZ")){
+
+            Pregunta p = grup.getRandomPregunta();
+
+            return p.toHash();
+
+        }
         return null;
 
     }
@@ -341,6 +374,33 @@ public class ModelFacade {
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
         // TODO Pràctica 4: comprova accés al grup segons el tipus d'acces
         // TODO Cal retornar al String si es "MEMBRE" o no
+
+        GroupAccess groupAccess = new GroupAccess();
+
+        if(tipusAcces.equals("RULETA")){
+            groupAccess.setStrategy(new RouletteAccessStrategy(Integer.parseInt(dadaAcces)));
+            if(groupAccess.accessGrup(persona, grup)){
+                return "MEMBER";
+            } else {
+                return "NO MEMBRE";
+            }
+        } else if (tipusAcces.equals("QUIZZ")){
+            Resposta r = grup.getResposta(dadaAcces);
+            groupAccess.setStrategy(new QuestionAccessStrategy(r));
+            if(groupAccess.accessGrup(persona, grup)){
+                return "MEMBER";
+            } else {
+                return "NO MEMBRE";
+            }
+
+        } else if (tipusAcces.equals("CODI")){
+            groupAccess.setStrategy(new CodeAccessStrategy(dadaAcces));
+            if(groupAccess.accessGrup(persona, grup)){
+                return "MEMBER";
+            } else {
+                return "NO MEMBRE";
+            }
+        }
         return null;
     }
     // TODO OPT Pràctica 4: Fer els mètodes corresponents a treure un usuari com a Follower

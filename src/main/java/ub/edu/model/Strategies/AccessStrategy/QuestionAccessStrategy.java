@@ -2,18 +2,19 @@ package ub.edu.model.Strategies.AccessStrategy;
 
 import ub.edu.model.cataleg.GrupInteres;
 import ub.edu.model.Persona;
+import ub.edu.model.quizz.Resposta;
 
 public class QuestionAccessStrategy implements AccessStrategy {
 
-    private String answer;
+    private Resposta answer;
 
-    public QuestionAccessStrategy(String answer) {
+    public QuestionAccessStrategy(Resposta answer) {
         this.answer = answer;
     }
 
     @Override
     public boolean executeAccess(Persona follower, GrupInteres group) {
-        if (group.getJoc().comprovarResposta(answer)) {
+        if (answer.isCorrecta()) {
             follower.memberGrup(group);
             return true;
         }

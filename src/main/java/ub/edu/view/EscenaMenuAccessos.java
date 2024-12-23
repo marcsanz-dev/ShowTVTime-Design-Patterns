@@ -9,6 +9,7 @@ public class EscenaMenuAccessos  extends Escena{
     private Button ruleta;
     private Button triviaJoc;
 
+    private EscenaPerfil escenaPerfil;
 
     public void start() throws Exception{
         //TODO
@@ -19,6 +20,8 @@ public class EscenaMenuAccessos  extends Escena{
         Escena escena = EscenaFactory.INSTANCE.creaEscena("InvitacioCodi-view", "Invitacio" );
         EscenaInvitacioCodi escenaInvitacio = (EscenaInvitacioCodi) escena;
         escenaInvitacio.setController(controller);
+        escenaInvitacio.setEscenaPerfil(escenaPerfil);
+        escenaInvitacio.setParentStage(this.stage);
         escenaInvitacio.start();
     }
 
@@ -26,6 +29,8 @@ public class EscenaMenuAccessos  extends Escena{
         Escena escena = EscenaFactory.INSTANCE.creaEscena("Ruleta-view", "Ruleta" );
         EscenaRuleta escenaRuleta = (EscenaRuleta) escena;
         escenaRuleta.setController(controller);
+        escenaRuleta.setEscenaPerfil(escenaPerfil);
+        escenaRuleta.setParentStage(this.stage);
         escenaRuleta.start();
 
     }
@@ -34,10 +39,14 @@ public class EscenaMenuAccessos  extends Escena{
         Escena escena = EscenaFactory.INSTANCE.creaEscena("TriviaJoc-view", "Trivia Joc" );
         EscenaTriviaJoc escenaTrivia = (EscenaTriviaJoc) escena;
         escenaTrivia.setController(controller);
+        escenaTrivia.setEscenaPerfil(escenaPerfil);
+        escenaTrivia.setParentStage(this.stage);
         escenaTrivia.start();
     }
 
 
-
+    public void setEscenaPerfil(EscenaPerfil escenaPerfil) {
+        this.escenaPerfil = escenaPerfil;
+    }
 
 }

@@ -1,7 +1,8 @@
 package ub.edu.model.cataleg;
 
 
-import ub.edu.model.Joc;
+import ub.edu.model.quizz.Pregunta;
+import ub.edu.model.quizz.Resposta;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +17,7 @@ public class GrupInteres {
 
     private String nomGrupInteres;
     private String descripcioGrupInteres;
-    private Joc joc;
+    private List<Pregunta> preguntes;
     private String codiAcces;
 
     public GrupInteres(String nomGrupInteres, String descripcioGrupInteres) {
@@ -26,6 +27,25 @@ public class GrupInteres {
         contingutDigitals = new ArrayList<ContingutDigital>();
         Random random = new Random();
         codiAcces = nomGrupInteres + "2024";
+        preguntes = new ArrayList<>();
+    }
+
+    public void addPregunta(Pregunta pregunta) {
+        preguntes.add(pregunta);
+    }
+
+    public Resposta getResposta(String resposta){
+        for (Pregunta p: preguntes) {
+            Resposta r = p.getResposta(resposta);
+            if (r != null) {
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public Pregunta getRandomPregunta() {
+        return preguntes.get((int)(Math.random() * preguntes.size()));
     }
 
     public String getNom() {
@@ -93,8 +113,5 @@ public class GrupInteres {
         return codiAcces;
     }
 
-    public Joc getJoc() {
-        return joc;
-    }
 
 }

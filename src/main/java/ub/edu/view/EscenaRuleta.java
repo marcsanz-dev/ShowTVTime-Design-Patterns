@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 
@@ -10,6 +11,9 @@ public class EscenaRuleta extends Escena {
 
     private String correuPersona;
     private String nomGrup;
+
+    private EscenaPerfil escenaPerfil;
+    private Stage parentStage;
     @FXML
     private Label resultLabel;
 
@@ -46,6 +50,7 @@ public class EscenaRuleta extends Escena {
             if (resultat!= null) {
                 if (resultat.equals("MEMBER")) {
                     accedirButton.setDisable(false);
+                    escenaPerfil.refresh();
                 } else {
                     spinButton.setDisable(true);
                 }
@@ -63,5 +68,16 @@ public class EscenaRuleta extends Escena {
     public void onAccedirButton() {
         // TODO Pràctica 4: Codi d'afegir com a membre de grup
         controller.addMember2Grup(correuPersona, nomGrup, 100);
+        escenaPerfil.refresh();
+        stage.close();
+        parentStage.close();
+    }
+
+    public void setEscenaPerfil(EscenaPerfil escenaPerfil) {
+        this.escenaPerfil = escenaPerfil;
+    }
+
+    public void setParentStage(Stage parentStage) {
+        this.parentStage = parentStage;
     }
 }

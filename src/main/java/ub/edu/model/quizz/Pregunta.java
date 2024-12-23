@@ -84,4 +84,12 @@ public class Pregunta {
     }
 
 
+    public Resposta getResposta(String resposta) {
+        for (Resposta r : respostes) {
+            if (r.getText().equals(resposta)) {
+                return r;
+            }
+        }
+        return null;
+    }
 }

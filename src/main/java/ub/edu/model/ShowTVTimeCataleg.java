@@ -20,7 +20,6 @@ public class ShowTVTimeCataleg {
     private CarteraTema llistaTematiques;
     private CarteraGrupInteres llistaGrupsInteres;
     private PeliculaLlistar peliculaLlistar;
-    private ContingutLlistar contingutLlistar;
 
 
     public ShowTVTimeCataleg(){
@@ -28,7 +27,6 @@ public class ShowTVTimeCataleg {
         llistaTematiques = new CarteraTema();
         llistaGrupsInteres = new CarteraGrupInteres();
         peliculaLlistar = new PeliculaLlistar();
-        contingutLlistar = new ContingutLlistar();
     }
     // Creador el ImUB
 

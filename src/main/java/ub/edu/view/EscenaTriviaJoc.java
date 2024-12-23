@@ -2,11 +2,15 @@ package ub.edu.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.Random;
 
 public class EscenaTriviaJoc extends Escena {
+
+    private EscenaPerfil escenaPerfil;
+    private Stage parentStage;
 
     @FXML
     private Label questionLabel;
@@ -103,5 +107,16 @@ public class EscenaTriviaJoc extends Escena {
     public void accedir() {
         // TODO Pràctica 4: Codi d'afegir com a membre de grup
         controller.addMember2Grup(correuPersona, nomGrup, 200);
+        escenaPerfil.refresh();
+        stage.close();
+        parentStage.close();
+    }
+
+    public void setEscenaPerfil(EscenaPerfil escenaPerfil) {
+        this.escenaPerfil = escenaPerfil;
+    }
+
+    public void setParentStage(Stage parentStage) {
+        this.parentStage = parentStage;
     }
 }
