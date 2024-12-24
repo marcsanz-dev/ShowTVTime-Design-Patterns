@@ -42,7 +42,8 @@ public class EscenaMain extends Escena {
     public ComboBox comboBox_main_tematica;
     public Button GlobalPersonalButton;
 
-    public int topPanel = 0;
+    //Variable per saber a quin panel estem de la columna de la dreta.
+    private int topPanel = 0;
 
 
     public void start() throws Exception {
@@ -138,6 +139,8 @@ public class EscenaMain extends Escena {
 
         topPanel = 2;
 
+        valueColumn.setVisible(true);
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("nom"));
         valueColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("value"));
         List<HashMap<Object, Object>> top10 = controller.getTop10Valorades();
@@ -157,6 +160,8 @@ public class EscenaMain extends Escena {
     private void popularTop10Imdb(){
 
         topPanel = 3;
+
+        valueColumn.setVisible(true);
 
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("nom"));
         valueColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("value"));
@@ -178,6 +183,9 @@ public class EscenaMain extends Escena {
 
         topPanel = 1;
 
+        //No utilitzem la columna de valor
+        valueColumn.setVisible(false);
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
         List<HashMap<Object, Object>> top10 = controller.getTop10Watched();
 
@@ -193,6 +201,9 @@ public class EscenaMain extends Escena {
     private void popularWatchNext(){
 
         topPanel = 0;
+
+        //No utilitzem la columna de valor
+        valueColumn.setVisible(false);
 
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
         List<HashMap<Object, Object>> watchNext = controller.getWatchNext(this.controller.getSessionMemory().getCorreuPersona());
