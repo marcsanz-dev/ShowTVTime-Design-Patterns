@@ -168,6 +168,10 @@ public abstract class ContingutDigital {
         return idioma;
     }
 
+    public float getValoracio() {
+        return puntuacio;
+    }
+
     public float getValoracioIMDb() {
         return valoracioIMDb;
     }

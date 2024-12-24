@@ -286,6 +286,71 @@ public class ModelFacade {
         return contingutsTop;
     }
 
+    public List<HashMap<Object, Object>> getTop10Valorades(){
+        List<HashMap<Object, Object>> contingutsTop = new ArrayList<>();
+        // TODO: Pràctica 4: Cal retornar els continguts de la WatchNext List
+        System.out.println("Model Facade: getWatchNext -> tipusContingut ");
+
+        List<ContingutDigital> cd = showTVTimeCataleg.getTop10Valorades();
+
+
+        for (ContingutDigital c : cd) {
+            if(c instanceof Serie){
+                contingutsTop.add(getDetallsSerie(c.getNom()));
+            } else if (c instanceof Pelicula){
+                contingutsTop.add(getDetallsPelicula(c.getNom()));
+            } else if (c instanceof Episodi){
+                Episodi e = (Episodi) c;
+                contingutsTop.add(getEpisodiDetalls(e.getNomSerie(), e.getNumTemporada(), e.getNumEpisodi()));
+            }
+        }
+
+        for(HashMap<Object, Object> h : contingutsTop){
+            ContingutDigital c = showTVTimeCataleg.findContingutDigital((String) h.get("nom"));
+            if(c instanceof Serie){
+                h.put("value", c.getValoracio());
+            } else if (c instanceof Pelicula){
+                h.put("value", c.getValoracio());
+            } else if (c instanceof Episodi){
+                h.put("value", c.getValoracio());
+            }
+        }
+        return contingutsTop;
+    }
+
+    public List<HashMap<Object, Object>> getTop10Imdb(){
+        List<HashMap<Object, Object>> contingutsTop = new ArrayList<>();
+        // TODO: Pràctica 4: Cal retornar els continguts de la WatchNext List
+        System.out.println("Model Facade: getWatchNext -> tipusContingut ");
+
+        List<ContingutDigital> cd = showTVTimeCataleg.getTop10Imdb();
+
+
+        for (ContingutDigital c : cd) {
+            if(c instanceof Serie){
+                contingutsTop.add(getDetallsSerie(c.getNom()));
+            } else if (c instanceof Pelicula){
+                contingutsTop.add(getDetallsPelicula(c.getNom()));
+            } else if (c instanceof Episodi){
+                Episodi e = (Episodi) c;
+                contingutsTop.add(getEpisodiDetalls(e.getNomSerie(), e.getNumTemporada(), e.getNumEpisodi()));
+            }
+        }
+
+        for(HashMap<Object, Object> h : contingutsTop){
+            ContingutDigital c = showTVTimeCataleg.findContingutDigital((String) h.get("nom"));
+            if(c instanceof Serie){
+                h.put("value", c.getValoracioIMDb());
+            } else if (c instanceof Pelicula){
+                h.put("value", c.getValoracioIMDb());
+            } else if (c instanceof Episodi){
+                h.put("value", c.getValoracioIMDb());
+            }
+        }
+        return contingutsTop;
+    }
+
+
     // Mètodes relatius a grups
 
     public List<HashMap<Object, Object>> visualitzarGrupsPerNom() throws Exception {

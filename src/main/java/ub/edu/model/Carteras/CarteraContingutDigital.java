@@ -140,4 +140,26 @@ public class CarteraContingutDigital implements CarteraContingutDigitalInterface
         return contingut.get(titol) instanceof Pelicula;
     }
 
+    public List<ContingutDigital> getTop10Valorades(){
+        List<ContingutDigital> top10 = new ArrayList<>(contingut.values());
+        Collections.sort(top10, new Comparator<ContingutDigital>() {
+            @Override
+            public int compare(ContingutDigital o1, ContingutDigital o2) {
+                return Float.compare(o2.getValoracio(), o1.getValoracio());
+            }
+        });
+        return top10.subList(0, 10);
+    }
+
+    public List<ContingutDigital> getTop10Imdb(){
+        List<ContingutDigital> top10 = new ArrayList<>(contingut.values());
+        Collections.sort(top10, new Comparator<ContingutDigital>() {
+            @Override
+            public int compare(ContingutDigital o1, ContingutDigital o2) {
+                return Float.compare(o2.getValoracioIMDb(), o1.getValoracioIMDb());
+            }
+        });
+        return top10.subList(0, 10);
+    }
+
 }

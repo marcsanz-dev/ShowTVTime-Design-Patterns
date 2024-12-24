@@ -134,6 +134,14 @@ public enum Controller {
         return modelFacade.getTop10Watched();
     }
 
+    public List<HashMap<Object, Object>> getTop10Valorades(){
+        return modelFacade.getTop10Valorades();
+    }
+
+    public List<HashMap<Object, Object>> getTop10Imdb(){
+        return modelFacade.getTop10Imdb();
+    }
+
     public List<HashMap<Object, Object>> getWatchNext( String correuPersona) {
         return modelFacade.getWatchNext(correuPersona);
     }

@@ -295,4 +295,14 @@ public class ShowTVTimeCataleg {
     public List<GrupInteres> getLlistaGrupsInteres() {
         return llistaGrupsInteres.getGrupsInteres();
     }
+
+    //Nous mètodes per a extres
+
+    public List<ContingutDigital> getTop10Valorades() {
+        return llistaContingutDigital.getTop10Valorades();
+    }
+
+    public List<ContingutDigital> getTop10Imdb() {
+        return llistaContingutDigital.getTop10Imdb();
+    }
 }

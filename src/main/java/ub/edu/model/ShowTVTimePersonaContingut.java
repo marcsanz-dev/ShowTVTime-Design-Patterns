@@ -54,4 +54,5 @@ public class ShowTVTimePersonaContingut {
                 .map(Map.Entry::getKey) // Extraer solo las claves (ContingutDigital)
                 .collect(Collectors.toList()); // Devolver como lista
     }
+
 }

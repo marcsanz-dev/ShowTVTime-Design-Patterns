@@ -51,7 +51,7 @@ public class EscenaMain extends Escena {
         popularComboBoxTematiques(); //success
         popularObresAudiovisualsPerNom();
         // TODO: Repensar donde se llamará este método
-        //popularTopDeuValorades();
+        //popularTopDeuValorades(); --> es cridara al botó d'observar les top 10 valorades
         popularWatchedList();
 
 
@@ -79,7 +79,7 @@ public class EscenaMain extends Escena {
         if(GlobalPersonalButton.getText().equals("Llista Personal")){
             GlobalPersonalButton.setText("Top10 Global");
             //TODO Pràctica 4 OPCIONAL: afegir el codi que calgui
-            popularTopDeuWatched();
+            popularTop10Watched();
             System.out.println("Seleccionada l'opció Top10Global");
         }else{
             GlobalPersonalButton.setText("Llista Personal");
@@ -115,7 +115,41 @@ public class EscenaMain extends Escena {
         popularWatchedList();
     }
 
-    public void popularTopDeuWatched(){
+    public void popularTop10Valorades(){
+        nomColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("nom"));
+        valueColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("value"));
+        List<HashMap<Object, Object>> top10 = controller.getTop10Valorades();
+
+        tableTop10Valorades.getItems().clear();
+
+        for (HashMap<Object, Object> obra : top10) {
+            String nom = (String) obra.get("nom");
+            float value = (float) obra.get("value");
+
+            Integer valueInt = (int) value;
+
+            tableTop10Valorades.getItems().add(new DataTop(nom, valueInt));
+        }
+    }
+
+    public void popularTop10Imdb(){
+        nomColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("nom"));
+        valueColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("value"));
+        List<HashMap<Object, Object>> top10 = controller.getTop10Imdb();
+
+        tableTop10Valorades.getItems().clear();
+
+        for (HashMap<Object, Object> obra : top10) {
+            String nom = (String) obra.get("nom");
+            float value = (float) obra.get("value");
+
+            Integer valueInt = (int) value;
+
+            tableTop10Valorades.getItems().add(new DataTop(nom, valueInt));
+        }
+    }
+
+    public void popularTop10Watched(){
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
         List<HashMap<Object, Object>> top10 = controller.getTop10Watched();
 
@@ -336,11 +370,15 @@ public class EscenaMain extends Escena {
         System.out.println("Presionado Punts");
         //TODO OPT Pràctica 4: Si heu fet valorar, prement aquest botó s'activa i desactiva
         //TODO l'opcio de fer Top10 de les valoracions fetes per usuaris enlloc de la llista de WatchNext
+
+        popularTop10Valorades();
     }
     public void onButtonImdbClick(){
         System.out.println("Presionado boton imdb");
         //TODO OPT Pràctica 4: Si heu fet valorar, prement aquest botó s'activa i desactiva
         //TODO l'opcio de fer Top10 de les valoracions imBD enlloc de la llista de WatchNext
+
+        popularTop10Imdb();
     }
 
 
