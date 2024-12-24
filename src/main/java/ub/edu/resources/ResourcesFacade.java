@@ -273,6 +273,12 @@ public class ResourcesFacade {
             // nom client es (p.getElement1().toString(),
             // nom pelicula es p.getElement2().toString(),
             // valor es p.getElement3.toString());
+
+            String nomClient = p.getElement1().toString();
+            String nomPelicula = p.getElement2().toString();
+            String valor = p.getElement3().toString();
+
+            modelFacade.valorarContingut(nomPelicula, nomClient, "ValorPunts",valor);
         }
 
         List<Trio<String, String, Integer>> relacionsSTI = dataService.getAllRelacionsPersonaPeliculaEstrelles();
@@ -282,6 +288,12 @@ public class ResourcesFacade {
             // nom client es (p.getElement1().toString(),
             // nom pelicula es p.getElement2().toString(),
             // estrelles es p.getElement3.toString());
+
+            String nomClient = p.getElement1().toString();
+            String nomPelicula = p.getElement2().toString();
+            String estrelles = p.getElement3().toString();
+
+            modelFacade.valorarContingut(nomPelicula, nomClient, "ValorEstrelles",estrelles);
         }
         List<Trio<String, String, Boolean>>  relacionsSTB = dataService.getAllRelacionsPersonaPeliculaLikes();
 
@@ -290,6 +302,12 @@ public class ResourcesFacade {
             // nom client es (p.getElement1().toString(),
             // nom pelicula es p.getElement2().toString(),
             // likes es p.getElement3.toString());
+
+            String nomClient = p.getElement1().toString();
+            String nomPelicula = p.getElement2().toString();
+            String likes = p.getElement3().toString();
+
+            modelFacade.valorarContingut(nomPelicula, nomClient, "ValorLikes",likes);
         }
     }
 
@@ -305,6 +323,16 @@ public class ResourcesFacade {
             // num episodi es p.getElement4.toString(),
             // punts es p.getElement5.toString());
 
+            String nomClient = p.getElement1().toString();
+            String nomSerie = p.getElement2().toString();
+            Integer numTemporada = Integer.parseInt(p.getElement3().toString());
+            Integer numEpisodi = Integer.parseInt(p.getElement4().toString());
+            String punts = p.getElement5().toString();
+
+            String nomEpisodi = showTVTimeCataleg.findEpisodi(nomSerie,numTemporada,numEpisodi).getNom();
+
+            modelFacade.valorarContingut(nomEpisodi, nomClient, "ValorPunts", punts);
+
         }
 
         List<Quintet<String, String, Integer, Integer, Integer>> relacionsSTI = dataService.getAllRelacionsPersonaEpisodiEstrelles();
@@ -316,6 +344,16 @@ public class ResourcesFacade {
             // num temporada es p.getElement3.toString(),
             // num episodi es p.getElement4.toString(),
             // estrelles es p.getElement5.toString());
+
+            String nomClient = p.getElement1().toString();
+            String nomSerie = p.getElement2().toString();
+            Integer numTemporada = Integer.parseInt(p.getElement3().toString());
+            Integer numEpisodi = Integer.parseInt(p.getElement4().toString());
+            String estrelles = p.getElement5().toString();
+
+            String nomEpisodi = showTVTimeCataleg.findEpisodi(nomSerie,numTemporada,numEpisodi).getNom();
+
+            modelFacade.valorarContingut(nomEpisodi, nomClient, "ValorEstrelles", estrelles);
         }
         List<Quintet<String, String, Integer, Integer, Boolean>> relacionsSTB = dataService.getAllRelacionsPersonaEpisodiLikes();
 
@@ -326,6 +364,16 @@ public class ResourcesFacade {
             // num temporada es p.getElement3.toString(),
             // num episodi es p.getElement4.toString(),
             // likes es p.getElement5.toString());
+
+            String nomClient = p.getElement1().toString();
+            String nomSerie = p.getElement2().toString();
+            Integer numTemporada = Integer.parseInt(p.getElement3().toString());
+            Integer numEpisodi = Integer.parseInt(p.getElement4().toString());
+            String likes = p.getElement5().toString();
+
+            String nomEpisodi = showTVTimeCataleg.findEpisodi(nomSerie,numTemporada,numEpisodi).getNom();
+
+            modelFacade.valorarContingut(nomEpisodi, nomClient, "ValorLikes", likes);
         }
     }
 
@@ -422,7 +470,7 @@ public class ResourcesFacade {
 
     public void addRelacioFollowingGrupInteres(String correuPersona, String nomGrupInteres, String data) throws Exception {
         Trio<String,String, String> gfp = new Trio<>(correuPersona,nomGrupInteres, data);
-        // TODO :  addPersonaFollowerGrupInteres(correuPersona, nomGrupInteres, data);
+        // TODO : addPersonaFollowerGrupInteres(correuPersona, nomGrupInteres, data);
         if ( !dataService.addRelacioPersonaGrupInteresFollowing(gfp))
             throw new NotAvailableGroupException() ;
     }
