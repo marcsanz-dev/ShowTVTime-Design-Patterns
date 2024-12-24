@@ -10,7 +10,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Controller {
+public enum Controller {
+
+    //Apliquem patró Singleton amb enum
+    INSTANCE;
+
+
     private ResourcesFacade resourcesFacade;
     private ModelFacade modelFacade;
     private ShowTVTimeCataleg showTVTimeCataleg;
@@ -20,19 +25,6 @@ public class Controller {
     private ShowTVTimePersonaGrup showTVTimePersonaGrup;
     private SessionMemory sessionMemory;
 
-    //Apliquem patró Singleton
-    private static volatile Controller instancia;
-
-    public static Controller getInstance() {
-        if (instancia == null) {
-            synchronized (Controller.class) {
-                if (instancia == null) {
-                    instancia = new Controller();
-                }
-            }
-        }
-        return instancia;
-    }
 
     private Controller() {
         this.showTVTimeCataleg = new ShowTVTimeCataleg();
