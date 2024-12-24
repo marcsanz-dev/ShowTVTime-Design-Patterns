@@ -243,5 +243,15 @@ public enum Controller {
         }
     }
 
+    //Nou Mètode
+
+    public boolean ha_vist(String correu, String nomContingut){
+        return modelFacade.ha_vist(correu, nomContingut);
+    }
+
+    public boolean ha_vist(String correu, String nomSerie, int numTemporada, int numEpisodi){
+        return modelFacade.ha_vist(correu, nomSerie, numTemporada, numEpisodi);
+    }
+
 
 }

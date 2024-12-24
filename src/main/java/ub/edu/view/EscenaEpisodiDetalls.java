@@ -103,15 +103,25 @@ public class EscenaEpisodiDetalls extends Escena{
     public void onBtnValorarClick() throws IOException {
         controller.getSessionMemory().setTipusObra("Episodi");
         controller.getSessionMemory().setTitolEpisodi(nomEpisodi_text.getText());
-        //Nova finestra
-        Escena escena = EscenaFactory.INSTANCE.creaEscena("valorarObra-view", "Valorar Contingut Audiovisual: "+this.id_contingut_audiovisual);
-        EscenaValorarObra escenaValorarObra = ((EscenaValorarObra)escena);
-        escenaValorarObra.setController(controller);
-        escenaValorarObra.start();
 
-        //Nou codi
+        if(controller.ha_vist(correu_persona, controller.getSessionMemory().getNomSerie(), numTemporada, numEpisodi)){
 
-        stage.close();
+            //Nova finestra
+            Escena escena = EscenaFactory.INSTANCE.creaEscena("valorarObra-view", "Valorar Contingut Audiovisual: "+this.id_contingut_audiovisual);
+            EscenaValorarObra escenaValorarObra = ((EscenaValorarObra)escena);
+            escenaValorarObra.setController(controller);
+            escenaValorarObra.start();
+
+            //Nou codi
+
+            stage.close();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("No has vist aquest episodi");
+            alert.showAndWait();
+        }
     }
 
     public void onBtnWatchedHistoryAddClick() throws Exception {

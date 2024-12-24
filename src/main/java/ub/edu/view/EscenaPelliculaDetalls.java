@@ -76,14 +76,23 @@ public class EscenaPelliculaDetalls extends Escena{
     public void onBtnValorarClick() throws IOException {
         controller.getSessionMemory().setTipusObra("Pelicula");
         //Nova finestra
-        Escena escena = EscenaFactory.INSTANCE.creaEscena("valorarObra-view", "Valorar Contingut Audiovisual: "+String.valueOf(this.nom_contingut_audiovisual));
-        EscenaValorarObra escenaValorarObra = ((EscenaValorarObra)escena);
-        escenaValorarObra.setController(controller);
-        escenaValorarObra.start();
+        if(controller.ha_vist(correu_persona, nom_contingut_audiovisual)){
+            Escena escena = EscenaFactory.INSTANCE.creaEscena("valorarObra-view", "Valorar Contingut Audiovisual: "+String.valueOf(this.nom_contingut_audiovisual));
+            EscenaValorarObra escenaValorarObra = ((EscenaValorarObra)escena);
+            escenaValorarObra.setController(controller);
+            escenaValorarObra.start();
 
-        //Nou codi
+            //Nou codi
 
-        stage.close();
+            stage.close();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Error al valorar la pelicula, primer has de veure-la");
+            alert.showAndWait();
+        }
     }
 
     public void onBtnWatchedHistoryAddClick() throws Exception {

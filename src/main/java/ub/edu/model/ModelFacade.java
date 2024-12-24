@@ -499,6 +499,14 @@ public class ModelFacade {
         return contingutsDisponibles;
     }
 
+    //Nou mètode
 
+    public boolean ha_vist(String correu, String nom_contingut_audiovisual) {
+        return showTVTimeWatchedHistory.has(correu, showTVTimeCataleg.findContingutDigital(nom_contingut_audiovisual));
+    }
+
+    public boolean ha_vist(String correu, String nom_contingut_audiovisual, int numTemporada, int numEpisodi) {
+        return showTVTimeWatchedHistory.has(correu, showTVTimeCataleg.findEpisodi(nom_contingut_audiovisual, numTemporada,numEpisodi));
+    }
 
 }
