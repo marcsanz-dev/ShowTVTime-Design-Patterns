@@ -21,7 +21,7 @@ public class EscenaMenuAccessos  extends Escena{
         EscenaInvitacioCodi escenaInvitacio = (EscenaInvitacioCodi) escena;
         escenaInvitacio.setController(controller);
         escenaInvitacio.setEscenaPerfil(escenaPerfil);
-        escenaInvitacio.setParentStage(this.stage);
+        stage.close();
         escenaInvitacio.start();
     }
 
@@ -30,7 +30,7 @@ public class EscenaMenuAccessos  extends Escena{
         EscenaRuleta escenaRuleta = (EscenaRuleta) escena;
         escenaRuleta.setController(controller);
         escenaRuleta.setEscenaPerfil(escenaPerfil);
-        escenaRuleta.setParentStage(this.stage);
+        stage.close();
         escenaRuleta.start();
 
     }
@@ -40,7 +40,7 @@ public class EscenaMenuAccessos  extends Escena{
         EscenaTriviaJoc escenaTrivia = (EscenaTriviaJoc) escena;
         escenaTrivia.setController(controller);
         escenaTrivia.setEscenaPerfil(escenaPerfil);
-        escenaTrivia.setParentStage(this.stage);
+        stage.close();
         escenaTrivia.start();
     }
 

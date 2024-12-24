@@ -371,14 +371,12 @@ public class ModelFacade {
 
         if(tipusAcces.equals("RULETA")){
             HashMap<String, String> tirada = new HashMap<>();
-            tirada.put("tirada", String.valueOf((int) (Math.random() * 3) + 1));
+            tirada.put("tirada", String.valueOf((int) (Math.random() * 2) + 1));
             return tirada;
+
         } else if (tipusAcces.equals("QUIZZ")){
-
             Pregunta p = grup.getRandomPregunta();
-
             return p.toHash();
-
         }
         return null;
 

@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 public class EscenaInvitacioCodi extends Escena {
 
     private EscenaPerfil escenaPerfil;
-    private Stage parentStage;
 
     @FXML
     private TextField invitationCodeField; // TextField for entering the code
@@ -59,14 +58,10 @@ public class EscenaInvitacioCodi extends Escena {
         controller.addMember2Grup(correuPersona, nomGrup, 150);
         escenaPerfil.refresh();
         stage.close();
-        parentStage.close();
     }
 
     public void setEscenaPerfil(EscenaPerfil escenaPerfil) {
         this.escenaPerfil = escenaPerfil;
     }
 
-    public void setParentStage(Stage parentStage) {
-        this.parentStage = parentStage;
-    }
 }

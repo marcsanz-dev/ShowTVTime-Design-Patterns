@@ -18,16 +18,17 @@ public class RouletteAccessStrategy implements AccessStrategy {
     @Override
     public boolean executeAccess(Persona follower, GrupInteres group) {
 
+        //Ara la ruleta es de 50% si toca 1 deixes de seguir el grup, si toca 2 et fas membre del grup
+
         switch (dice) {
-                //Segueixes sent follower
+            //Deixes de seguir el grup
             case 1:
                 return false;
-                //Deixes de seguir el grup
+
+            //Et fas membre del grup
             case 2:
-                return false;
-                //Et fas membre del grup
-            case 3:
                 return true;
+
             default:
                 return false;
         }

@@ -10,7 +10,6 @@ import java.util.Random;
 public class EscenaTriviaJoc extends Escena {
 
     private EscenaPerfil escenaPerfil;
-    private Stage parentStage;
 
     @FXML
     private Label questionLabel;
@@ -109,14 +108,9 @@ public class EscenaTriviaJoc extends Escena {
         controller.addMember2Grup(correuPersona, nomGrup, 200);
         escenaPerfil.refresh();
         stage.close();
-        parentStage.close();
     }
 
     public void setEscenaPerfil(EscenaPerfil escenaPerfil) {
         this.escenaPerfil = escenaPerfil;
-    }
-
-    public void setParentStage(Stage parentStage) {
-        this.parentStage = parentStage;
     }
 }

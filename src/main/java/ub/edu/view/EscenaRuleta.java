@@ -13,7 +13,8 @@ public class EscenaRuleta extends Escena {
     private String nomGrup;
 
     private EscenaPerfil escenaPerfil;
-    private Stage parentStage;
+
+
     @FXML
     private Label resultLabel;
 
@@ -52,7 +53,9 @@ public class EscenaRuleta extends Escena {
                     accedirButton.setDisable(false);
                     escenaPerfil.refresh();
                 } else {
+                    controller.addNothing2Grup(correuPersona, nomGrup);
                     spinButton.setDisable(true);
+                    escenaPerfil.refresh();
                 }
             }
         } else {
@@ -70,14 +73,9 @@ public class EscenaRuleta extends Escena {
         controller.addMember2Grup(correuPersona, nomGrup, 100);
         escenaPerfil.refresh();
         stage.close();
-        parentStage.close();
     }
 
     public void setEscenaPerfil(EscenaPerfil escenaPerfil) {
         this.escenaPerfil = escenaPerfil;
-    }
-
-    public void setParentStage(Stage parentStage) {
-        this.parentStage = parentStage;
     }
 }
