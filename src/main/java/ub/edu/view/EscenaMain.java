@@ -42,6 +42,8 @@ public class EscenaMain extends Escena {
     public ComboBox comboBox_main_tematica;
     public Button GlobalPersonalButton;
 
+    public int topPanel = 0;
+
 
     public void start() throws Exception {
         String correu = controller.getSessionMemory().getCorreuPersona();
@@ -115,7 +117,27 @@ public class EscenaMain extends Escena {
         popularWatchedList();
     }
 
-    public void popularTop10Valorades(){
+    public void refreshTopPanel(){
+        switch (topPanel){
+            case 0:
+                popularWatchNext();
+                break;
+            case 1:
+                popularTop10Watched();
+                break;
+            case 2:
+                popularTop10Valorades();
+                break;
+            case 3:
+                popularTop10Imdb();
+                break;
+        }
+    }
+
+    private void popularTop10Valorades(){
+
+        topPanel = 2;
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("nom"));
         valueColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("value"));
         List<HashMap<Object, Object>> top10 = controller.getTop10Valorades();
@@ -132,7 +154,10 @@ public class EscenaMain extends Escena {
         }
     }
 
-    public void popularTop10Imdb(){
+    private void popularTop10Imdb(){
+
+        topPanel = 3;
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("nom"));
         valueColumn.setCellValueFactory(new PropertyValueFactory<DataTop, String>("value"));
         List<HashMap<Object, Object>> top10 = controller.getTop10Imdb();
@@ -149,7 +174,10 @@ public class EscenaMain extends Escena {
         }
     }
 
-    public void popularTop10Watched(){
+    private void popularTop10Watched(){
+
+        topPanel = 1;
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
         List<HashMap<Object, Object>> top10 = controller.getTop10Watched();
 
@@ -162,7 +190,10 @@ public class EscenaMain extends Escena {
         }
     }
 
-    public void popularWatchNext(){
+    private void popularWatchNext(){
+
+        topPanel = 0;
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
         List<HashMap<Object, Object>> watchNext = controller.getWatchNext(this.controller.getSessionMemory().getCorreuPersona());
 

@@ -107,7 +107,7 @@ public class EscenaTemporadesDetalls extends Escena{
             alert.setContentText("Pelicula afegida a la llista de vistos");
             alert.showAndWait();
             escenaMain.refreshWatchedList();
-            escenaMain.popularWatchNext();
+            escenaMain.refreshTopPanel();
 
             stage.close();
         }else{

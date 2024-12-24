@@ -110,6 +110,7 @@ public class EscenaEpisodiDetalls extends Escena{
             Escena escena = EscenaFactory.INSTANCE.creaEscena("valorarObra-view", "Valorar Contingut Audiovisual: "+this.id_contingut_audiovisual);
             EscenaValorarObra escenaValorarObra = ((EscenaValorarObra)escena);
             escenaValorarObra.setController(controller);
+            escenaValorarObra.setEscenaMain(escenaMain);
             escenaValorarObra.start();
 
             //Nou codi
@@ -134,7 +135,7 @@ public class EscenaEpisodiDetalls extends Escena{
             alert.setContentText("Episodi afegit a la llista de vistos");
             alert.showAndWait();
             escenaMain.refreshWatchedList();
-            escenaMain.popularWatchNext();
+            escenaMain.refreshTopPanel();
             stage.close();
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);

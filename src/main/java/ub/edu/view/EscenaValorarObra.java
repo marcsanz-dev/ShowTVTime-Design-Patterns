@@ -30,6 +30,8 @@ public class EscenaValorarObra extends Escena {
     private String correu_persona;
     private String nom_obra_audiovisual;
 
+    private EscenaMain escenaMain;
+
 
 // TO DO Discutir con Adrian si podemos hacer un valorar Pelicula y un valorar Episodio diferente
 
@@ -174,6 +176,9 @@ public class EscenaValorarObra extends Escena {
         System.out.println("Valoració de tipus: "+ typeValorar+ " és: "+ valor);
         //TODO: Afegir comprobacions als valors
 
+        //TODO: hacer efectiva la valoracion -> controller....
+        /** Your Code Here **/
+
         if(radioButton_G2_Text2.isSelected() && !(Integer.parseInt(valor) >= 0 && Integer.parseInt(valor) <= 100)){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Èxit");
@@ -183,10 +188,12 @@ public class EscenaValorarObra extends Escena {
         }
         else{
             controller.valorarContingut(nom_obra_audiovisual, correu_persona, typeValorar, valor);
+            if(typeValorar.equals("ValorPunts")){
+                escenaMain.refreshTopPanel();
+            }
         }
 
-        //TODO: hacer efectiva la valoracion -> controller....
-        /** Your Code Here **/
+
 
         stage.close();
     }
@@ -195,6 +202,12 @@ public class EscenaValorarObra extends Escena {
         //enviar la valoracion
         System.out.println("Entro en cancelar una valoracion");
         stage.close();
+    }
+
+    //Nou mètode
+
+    public void setEscenaMain(EscenaMain escenaMain){
+        this.escenaMain = escenaMain;
     }
 
 

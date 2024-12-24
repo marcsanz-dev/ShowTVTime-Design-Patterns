@@ -102,6 +102,7 @@ public class EscenaSerieDetalls extends Escena{
             alert.setContentText("Pelicula afegida a la llista de vistos");
             alert.showAndWait();
             escenaMain.refreshWatchedList();
+            escenaMain.refreshTopPanel();
 
             stage.close();
         }else{

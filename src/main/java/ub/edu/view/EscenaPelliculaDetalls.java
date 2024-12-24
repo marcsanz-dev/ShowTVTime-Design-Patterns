@@ -80,6 +80,7 @@ public class EscenaPelliculaDetalls extends Escena{
             Escena escena = EscenaFactory.INSTANCE.creaEscena("valorarObra-view", "Valorar Contingut Audiovisual: "+String.valueOf(this.nom_contingut_audiovisual));
             EscenaValorarObra escenaValorarObra = ((EscenaValorarObra)escena);
             escenaValorarObra.setController(controller);
+            escenaValorarObra.setEscenaMain(escenaMain);
             escenaValorarObra.start();
 
             //Nou codi
@@ -104,6 +105,7 @@ public class EscenaPelliculaDetalls extends Escena{
             alert.setContentText("Pelicula afegida a la llista de vistos");
             alert.showAndWait();
             escenaMain.refreshWatchedList();
+            escenaMain.refreshTopPanel();
 
             stage.close();
         }else{
