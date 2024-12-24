@@ -9,29 +9,34 @@ public abstract class ContingutDigital {
     private String descripcio;
     private int  anyEstrena;
     private int durada;
-    private float puntuacio;
-    private int numVotants;
-    private int numVisualitzacions;
     private String url;
     private String idioma;
-    private float valoracioInicial;
     private CarteraTema tematiques;
+
+    private float valoracioIMDb;
+    private float puntuacio;
+    private int numVotants_punts;
+    private float puntuacio_estrelles;
+    private int numVotants_estrelles;
+    private int likes;
+    private int dislikes;
 
     public ContingutDigital() {
        this.tematiques = new CarteraTema();
+       this.numVotants_punts = 0;
     }
 
     public ContingutDigital(String nom) {
         this.titol = nom;
-        this.numVisualitzacions = 0;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
     public ContingutDigital(String nom, int durada) {
         this.titol = nom;
         this.durada = durada;
-        this.numVisualitzacions = 0;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
     public ContingutDigital(String titol, String descripcio, int estrena, int durada) {
@@ -39,8 +44,8 @@ public abstract class ContingutDigital {
         this.descripcio = descripcio;
         this.anyEstrena = estrena;
         this.durada = durada;
-        this.numVisualitzacions = 0;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
     public ContingutDigital(String titol, String descripcio, int estrena, int durada, float puntuacio, String url) {
@@ -48,55 +53,53 @@ public abstract class ContingutDigital {
         this.descripcio = descripcio;
         this.anyEstrena = estrena;
         this.durada = durada;
-        this.puntuacio = puntuacio;
+        this.valoracioIMDb = puntuacio;
         this.url = url;
-        this.numVisualitzacions = 0;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
     public ContingutDigital(String titol, int estrena, int durada) {
         this.titol = titol;
         this.durada = durada;
         this.anyEstrena = estrena;
-        this.numVisualitzacions = 0;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
     public ContingutDigital(String titol, int estrena, String idioma) {
         this.titol = titol;
         this.idioma = idioma;
         this.anyEstrena = estrena;
-        this.numVisualitzacions = 0;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
     public ContingutDigital(String titol, int anyEstrena, String descripcio, String url){
         this.titol = titol;
         this.anyEstrena = anyEstrena;
         this.descripcio = descripcio;
-        this.numVisualitzacions = 0;
         this.url = url;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
-    public ContingutDigital(String titol, int anyEstrena, String descripcio, int durada, float puntuacio, int numVotants, String url, String idioma) {
+    public ContingutDigital(String titol, int anyEstrena, String descripcio, int durada, float puntuacio, String url, String idioma) {
         this.titol = titol;
         this.anyEstrena = anyEstrena;
         this.descripcio = descripcio;
         this.durada = durada;
-        this.puntuacio = puntuacio;
-        this.numVotants = numVotants;
+        this.valoracioIMDb = puntuacio;
         this.url = url;
         this.idioma = idioma;
-        this.numVisualitzacions = 0;
         this.tematiques = new CarteraTema();
     }
 
     public ContingutDigital(String titol, String descripcio) {
         this.titol = titol;
         this.descripcio = descripcio;
-        this.numVisualitzacions = 0;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
     public ContingutDigital(String nom, String descripcio, String url, int anyEstrena, String idioma, int durada, float valoracio) {
@@ -106,9 +109,9 @@ public abstract class ContingutDigital {
         this.anyEstrena = anyEstrena;
         this.idioma = idioma;
         this.durada = durada;
-        this.valoracioInicial = valoracio;
-        this.numVisualitzacions = 0;
+        this.valoracioIMDb = valoracio;
         this.tematiques = new CarteraTema();
+        this.numVotants_punts = 0;
     }
 
     public String getNom() {
@@ -140,16 +143,21 @@ public abstract class ContingutDigital {
     }
 
     public void valorar(int punts) {
-        puntuacio = (puntuacio * numVotants + punts) / (numVotants + 1);
-        numVotants++;
+        puntuacio = (puntuacio * numVotants_punts + punts) / (numVotants_punts + 1);
+        numVotants_punts++;
     }
 
-    public void addVisualitzacio() {
-        numVisualitzacions++;
+    public void valorar_estrelles(int punts) {
+        puntuacio_estrelles = (puntuacio_estrelles * numVotants_estrelles + punts) / (numVotants_estrelles + 1);
+        numVotants_estrelles++;
     }
 
-    public int getNumVisualitzacions() {
-        return numVisualitzacions;
+    public void like() {
+        likes++;
+    }
+
+    public void dislike() {
+        dislikes++;
     }
 
     public String getUrl() {
@@ -160,8 +168,8 @@ public abstract class ContingutDigital {
         return idioma;
     }
 
-    public float getValoracioInicial() {
-        return valoracioInicial;
+    public float getValoracioIMDb() {
+        return valoracioIMDb;
     }
 
 

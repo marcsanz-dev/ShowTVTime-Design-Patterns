@@ -139,7 +139,7 @@ public class ModelFacade {
         atributsEpisodi.put("nom", e.getNom());
         atributsEpisodi.put("descripcio", e.getDescripcio());
         atributsEpisodi.put("durada", e.getDurada());
-        atributsEpisodi.put("valoracio", e.getValoracioInicial());
+        atributsEpisodi.put("valoracio", e.getValoracioIMDb());
         atributsEpisodi.put("imatge", e.getUrl());
         atributsEpisodi.put("numTemporada", e.getNumTemporada());
         atributsEpisodi.put("numEpisodi", e.getNumEpisodi());
@@ -449,6 +449,24 @@ public class ModelFacade {
     public boolean valorarContingut( String nomContingut, String correu, String valortype, String valoracio) {
         // TODO OPT: Pràctica 4: Cal valorar el contingut nomContingut amb la valoració valoracio de tipus valorType pel client amb correu correu
         System.out.println("Model Facade: valorarContingut -> nomContingut: " + nomContingut + " correu: " + correu + " valortype: " + valortype + " valoracio: " + valoracio);
+
+        if(valortype.equals("ValorPunts")){
+            showTVTimeCataleg.findContingutDigital(nomContingut).valorar(Integer.parseInt(valoracio));
+            showTVTimePersones.findPersonaCartera(correu).addReputation(10);
+        } else if (valortype.equals("ValorEstrelles")){
+            showTVTimeCataleg.findContingutDigital(nomContingut).valorar(Integer.parseInt(valoracio));
+            showTVTimePersones.findPersonaCartera(correu).addReputation(10);
+        } else if(valortype.equals("ValorLikes")){
+            if (valoracio.equals("Like")){
+                showTVTimeCataleg.findContingutDigital(nomContingut).like();
+                showTVTimePersones.findPersonaCartera(correu).addReputation(10);
+            } else if (valoracio.equals("Dislike")){
+                showTVTimeCataleg.findContingutDigital(nomContingut).dislike();
+                showTVTimePersones.findPersonaCartera(correu).addReputation(10);
+            }
+        }
+
+
         return false;
     }
 

@@ -81,7 +81,7 @@ public class DAOSerieDB implements DAOSerie {
                 serie.getAnyEstrena(),
                 serie.getIdioma(),
                 serie.getDurada(),
-                serie.getValoracioInicial()
+                serie.getValoracioIMDb()
         );
         try (
                 PreparedStatement statement = this.connection.prepareStatement(sql);

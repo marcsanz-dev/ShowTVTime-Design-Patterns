@@ -81,7 +81,7 @@ public class DAOPeliculaDB implements DAOPelicula {
                 pelicula.getAnyEstrena(),
                 pelicula.getIdioma(),
                 pelicula.getDurada(),
-                pelicula.getValoracioInicial()
+                pelicula.getValoracioIMDb()
         );
         try (
                 PreparedStatement statement = this.connection.prepareStatement(sql);

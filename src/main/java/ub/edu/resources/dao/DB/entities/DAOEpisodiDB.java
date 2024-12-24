@@ -123,7 +123,7 @@ public class DAOEpisodiDB implements DAOEpisodi {
         // insert
         sql = String.format(
                 "INSERT INTO Episodi ('temporada_id', 'numEpisodi', 'nom', 'valoracio') VALUES ('%d', '%d', '%s', '%f');",
-                temporada_id, episodi.getNumEpisodi(), episodi.getNom(), episodi.getValoracioInicial()
+                temporada_id, episodi.getNumEpisodi(), episodi.getNom(), episodi.getValoracioIMDb()
         );
         try (
                 PreparedStatement statement = this.connection.prepareStatement(sql);

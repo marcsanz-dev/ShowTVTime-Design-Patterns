@@ -174,6 +174,17 @@ public class EscenaValorarObra extends Escena {
         System.out.println("Valoració de tipus: "+ typeValorar+ " és: "+ valor);
         //TODO: Afegir comprobacions als valors
 
+        if(radioButton_G2_Text2.isSelected() && !(Integer.parseInt(valor) >= 0 && Integer.parseInt(valor) <= 100)){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Èxit");
+            alert.setHeaderText("Èxit");
+            alert.setContentText("La valoració ha de ser un número entre 0 i 100");
+            alert.showAndWait();
+        }
+        else{
+            controller.valorarContingut(nom_obra_audiovisual, correu_persona, typeValorar, valor);
+        }
+
         //TODO: hacer efectiva la valoracion -> controller....
         /** Your Code Here **/
 
