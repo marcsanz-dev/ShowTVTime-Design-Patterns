@@ -296,7 +296,9 @@ public class EscenaMain extends Escena {
             Escena escena = EscenaFactory.INSTANCE.creaEscena("pelliculaDetalls-view", "Detalls pellicula "+String.valueOf(nom));
             EscenaPelliculaDetalls escenaPelliculaDetalls = ((EscenaPelliculaDetalls)escena);
             escenaPelliculaDetalls.setController(controller);
+            //MPV1
             escenaPelliculaDetalls.setEscenaMain(this);
+
             this.controller.getSessionMemory().setNomPelicula(nom);
             escenaPelliculaDetalls.start();
         } else {

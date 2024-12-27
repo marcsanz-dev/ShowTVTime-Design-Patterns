@@ -29,6 +29,7 @@ public class EscenaPelliculaDetalls extends Escena{
     private String nom_contingut_audiovisual;
 
     //Nous atributs
+    //MPV1
 
     private EscenaMain escenaMain;
 
@@ -104,6 +105,8 @@ public class EscenaPelliculaDetalls extends Escena{
             alert.setHeaderText("Èxit");
             alert.setContentText("Pelicula afegida a la llista de vistos");
             alert.showAndWait();
+
+            //MPV1
             escenaMain.refreshWatchedList();
             escenaMain.refreshTopPanel();
 
@@ -119,6 +122,7 @@ public class EscenaPelliculaDetalls extends Escena{
     }
 
     //Nous mètodes
+    //MPV1
 
     public void setEscenaMain(EscenaMain escenaMain){
         this.escenaMain = escenaMain;

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ShowTVTimePersonaGrup {
+    //MPV2
+
     HashMap<String, CarteraGrupInteres> followedGroups;
     HashMap<String, CarteraGrupInteres> memberGroups;
     HashMap<String, CarteraGrupInteres> nothingGroups;

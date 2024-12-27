@@ -14,10 +14,6 @@ public class QuestionAccessStrategy implements AccessStrategy {
 
     @Override
     public boolean executeAccess(Persona follower, GrupInteres group) {
-        if (answer.isCorrecta()) {
-            follower.memberGrup(group);
-            return true;
-        }
-        return false;
+        return answer.isCorrecta();
     }
 }

@@ -106,6 +106,8 @@ public class EscenaTemporadesDetalls extends Escena{
             alert.setHeaderText("Èxit");
             alert.setContentText("Pelicula afegida a la llista de vistos");
             alert.showAndWait();
+
+            //MPV1
             escenaMain.refreshWatchedList();
             escenaMain.refreshTopPanel();
 
@@ -121,6 +123,7 @@ public class EscenaTemporadesDetalls extends Escena{
 
 
     //Nous mètodes
+    //MPV1
 
     public void setEscenaMain(EscenaMain escenaMain){
         this.escenaMain = escenaMain;

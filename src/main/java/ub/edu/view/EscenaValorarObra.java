@@ -187,6 +187,7 @@ public class EscenaValorarObra extends Escena {
             alert.showAndWait();
         }
         else{
+            //Extras
             controller.valorarContingut(nom_obra_audiovisual, correu_persona, typeValorar, valor);
             if(typeValorar.equals("ValorPunts")){
                 escenaMain.refreshTopPanel();

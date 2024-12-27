@@ -157,6 +157,7 @@ public class ModelFacade {
 
     public boolean addToWatchedHistoryList(String nomContingut, String correu, String data) throws Exception {
         // TODO: Pràctica 4: Cal afegir el contingut nomContingut a la WatchedHistory del client amb correu correu
+        //MPV0 i tb se utiliza en MPV1
         ContingutDigital c = showTVTimeCataleg.findContingutDigital(nomContingut);
         showTVTimeWatchedHistory.add(correu, c, data);
         if(c instanceof Serie){
@@ -176,6 +177,7 @@ public class ModelFacade {
 
     public boolean addTemporadaToWatchedHistoryList(String nomContingut, int numTemporada, String correu, String data) throws Exception {
         // TODO: Pràctica 4: Cal afegir el contingut nomContingut a la WatchedHistory del client amb correu correu
+        //MPV0 i tb se utiliza en MPV1
         Temporada t = showTVTimeCataleg.findTemporada(nomContingut, numTemporada);
         List<Episodi> episodis = t.getEpisodis();
         for (Episodi e : episodis) {
@@ -196,6 +198,7 @@ public class ModelFacade {
 
     public boolean addEpisodiToWatchedHistoryList(String nomContingut, int numTemporada, int numEpisodi, String correu, String data) throws Exception {
         // TODO: Pràctica 4: Cal afegir el contingut nomContingut a la WatchedHistory del client amb correu correu
+        //MPV0 i tb se utiliza en MPV1
         ContingutDigital c = showTVTimeCataleg.findEpisodi(nomContingut, numTemporada, numEpisodi);
         showTVTimeWatchedHistory.add(correu, c, data);
 
@@ -214,6 +217,7 @@ public class ModelFacade {
     }
 
     public boolean addToWatchNextList(String nomContingut, int numTemporada, int numEpisodi, String correu, String data) throws Exception {
+        //MPV0 i tb se utiliza en MPV1
         ContingutDigital c = showTVTimeCataleg.findEpisodi(nomContingut, numTemporada, numEpisodi);
         showTVTimeWatchNext.add(correu, c, data);
         System.out.println("Model Facade: addEpisodiToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
@@ -222,6 +226,7 @@ public class ModelFacade {
 
     public List<HashMap<Object, Object>> getWatchedHistory(String correu) {
         List<HashMap<Object, Object>> wishList = new ArrayList<>();
+        //MPV0 i tb se utiliza en MPV1
         // TODO: Pràctica 4: Cal retornar els continguts de la personal_content del client amb correu correu
 
         System.out.println("Model Facade: getWatchedHistory -> correu: " + correu );
@@ -244,6 +249,7 @@ public class ModelFacade {
 
     public List<HashMap<Object, Object>> getWatchNext(String correu) {
         List<HashMap<Object, Object>> contingutsTop = new ArrayList<>();
+        //MPV0 i tb se utiliza en MPV1
         // TODO: Pràctica 4: Cal retornar els continguts de la WatchNext List
         System.out.println("Model Facade: getWatchNext -> tipusContingut ");
 
@@ -267,6 +273,7 @@ public class ModelFacade {
 
     public List<HashMap<Object, Object>> getTop10Watched(){
         List<HashMap<Object, Object>> contingutsTop = new ArrayList<>();
+        //Extras
         // TODO: Pràctica 4: Cal retornar els continguts de la WatchNext List
         System.out.println("Model Facade: getWatchNext -> tipusContingut ");
 
@@ -370,6 +377,7 @@ public class ModelFacade {
     // TODO Pràctica 4: Cal afegir un mètode per poder obtenir els grups en els què l'usuari no es ni follower ni membre
 
     public List<HashMap<Object, Object>> getNothingGrupsPerPersona(String correuPersona)  throws Exception {
+        //MPV2
 
         // TODO Pràctica 4: Cal  obtenir els grups en els què l'usuari no es ni follower ni membre
         // Per a cada grup cal omplir la hashMap que espera la vista
@@ -451,6 +459,7 @@ public class ModelFacade {
     }
 
     public HashMap<String, String> sollicitarAcces(String tipusAcces, String correuPersona, String nomGrup) throws Exception{
+        //MPV2 i extras
         Persona persona = showTVTimePersones.findPersonaCartera(correuPersona);
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
         // TODO Pràctica 4: Cal sol.licitar accés l'usuari "persona" com a membre del grup "grup" segons el tipusAcces
@@ -475,6 +484,7 @@ public class ModelFacade {
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
         // TODO Pràctica 4: comprova accés al grup segons el tipus d'acces
         // TODO Cal retornar al String si es "MEMBRE" o no
+        //MPV2 i extras
 
         GroupAccess groupAccess = new GroupAccess();
 
@@ -512,6 +522,7 @@ public class ModelFacade {
     // TODO OPT: Pràctica 4: Mètodes per valorar
 
     public boolean valorarContingut( String nomContingut, String correu, String valortype, String valoracio) {
+        //Extras
         // TODO OPT: Pràctica 4: Cal valorar el contingut nomContingut amb la valoració valoracio de tipus valorType pel client amb correu correu
         System.out.println("Model Facade: valorarContingut -> nomContingut: " + nomContingut + " correu: " + correu + " valortype: " + valortype + " valoracio: " + valoracio);
 

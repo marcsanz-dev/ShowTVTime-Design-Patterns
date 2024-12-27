@@ -35,6 +35,7 @@ public class GrupInteres {
     }
 
     public Resposta getResposta(String resposta){
+        //Extras
         for (Pregunta p: preguntes) {
             Resposta r = p.getResposta(resposta);
             if (r != null) {

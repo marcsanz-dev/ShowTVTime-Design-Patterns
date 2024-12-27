@@ -40,6 +40,7 @@ public class ShowTVTimePersonaContingut {
     }
 
     public List<ContingutDigital> getTop10General(){
+        //Extra
         HashMap<ContingutDigital, Integer> frecuencias = new HashMap<>();
         for(String persona : personal_content.keySet()){
             for(ContingutDigital c : personal_content.get(persona).getContingutDigital()){

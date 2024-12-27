@@ -33,6 +33,8 @@ public class EscenaEpisodiDetalls extends Escena{
     private Integer numEpisodi;
 
     //Nous atributs
+    //MPV1
+
     private EscenaMain escenaMain;
 
     public void start() throws Exception {
@@ -134,6 +136,8 @@ public class EscenaEpisodiDetalls extends Escena{
             alert.setHeaderText("Èxit");
             alert.setContentText("Episodi afegit a la llista de vistos");
             alert.showAndWait();
+
+            //MPV1
             escenaMain.refreshWatchedList();
             escenaMain.refreshTopPanel();
             stage.close();
@@ -148,6 +152,7 @@ public class EscenaEpisodiDetalls extends Escena{
 
 
     //Nous mètodes
+    //MPV1
 
     public void setEscenaMain(EscenaMain escenaMain){
         this.escenaMain = escenaMain;

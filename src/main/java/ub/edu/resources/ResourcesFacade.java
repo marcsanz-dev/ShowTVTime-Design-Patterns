@@ -196,6 +196,7 @@ public class ResourcesFacade {
     }
     private void initWatchedHistory() throws Exception  {
         List<Trio<String, String, String>> relacionsST = dataService.getAllRelacionsPersonaWatchedPelicula();
+        //MPV0
 
         for (Trio p : relacionsST) {
             // TODO Practica 4 : afegir la pel.licula a la watchedList
@@ -214,17 +215,6 @@ public class ResourcesFacade {
             // num temporada es Integer.parseInt(p.getElement3().toString()
             // episodi es p.getElement4.toString()
             // data es p.getElement5.toString());
-            Serie s = showTVTimeCataleg.findSerie(p.getElement2().toString());
-            if(s.findEpisodi(Integer.parseInt(p.getElement3().toString()),
-                    Integer.parseInt(p.getElement4().toString()) + 1) != null){
-                modelFacade.addToWatchNextList(p.getElement2().toString(),Integer.parseInt(p.getElement3().toString()),
-                        Integer.parseInt(p.getElement4().toString()) + 1,
-                        p.getElement1().toString(),p.getElement5().toString());
-            } else if (s.getNumTemporades() > Integer.parseInt(p.getElement3().toString())) {
-                modelFacade.addToWatchNextList(p.getElement2().toString(),
-                        Integer.parseInt(p.getElement3().toString()) + 1, 1,
-                        p.getElement1().toString(),p.getElement5().toString());
-            }
             modelFacade.addEpisodiToWatchedHistoryList(p.getElement2().toString(),
                     Integer.parseInt(p.getElement3().toString()),Integer.parseInt(p.getElement4().toString()),
                     p.getElement1().toString(),p.getElement5().toString());
@@ -248,12 +238,7 @@ public class ResourcesFacade {
             // nom serie es p.getElement2().toString(),
             // num temporada es Integer.parseInt(p.getElement3().toString()
             // data es p.getElement4.toString());
-            Serie s = showTVTimeCataleg.findSerie(p.getElement2().toString());
-            if (s.getNumTemporades() > Integer.parseInt(p.getElement3().toString())) {
-                modelFacade.addToWatchNextList(p.getElement2().toString(),
-                        Integer.parseInt(p.getElement3().toString()) + 1, 1,
-                        p.getElement1().toString(),p.getElement4().toString());
-            }
+
             modelFacade.addTemporadaToWatchedHistoryList(p.getElement2().toString(),Integer.parseInt(p.getElement3().toString()), p.getElement1().toString(),p.getElement4().toString());
         }
 
@@ -266,6 +251,7 @@ public class ResourcesFacade {
     }
 
     private void iniValoracionsPelicules() throws Exception {
+        //Extras
         List<Trio<String, String, Float>> relacionsST = dataService.getAllRelacionsPersonaPeliculaPunts();
 
         for (Trio p : relacionsST) {
@@ -313,6 +299,7 @@ public class ResourcesFacade {
 
 
     private void iniValoracionsEpisodis() throws Exception {
+        //Extras
         List<Quintet<String, String, Integer, Integer, Float>> relacionsST = dataService.getAllRelacionsPersonaEpisodiPunts();
 
         for (Quintet p : relacionsST) {
@@ -396,6 +383,7 @@ public class ResourcesFacade {
     }
 
     private void initFollowerGrupsInteres() throws Exception {
+        //MPV2
         List<Trio<String, String, String>> relacionsST = dataService.getAllRelacionsPersonaFollowingGrupInteres();
 
         for (Trio p : relacionsST) {
@@ -413,6 +401,7 @@ public class ResourcesFacade {
     }
 
     private void initMemberGrupsInteres() throws Exception {
+        //MPV2
         List<Quartet<String, String, String, Integer>> relacionsST = dataService.getAllRelacionsPersonaMemberGrupInteres();
 
         for (Quartet p : relacionsST) {
@@ -432,6 +421,7 @@ public class ResourcesFacade {
     }
 
     public void initPreguntesGrupInteres() throws Exception {
+        //Extras
         List<Trio<String, String, String>> relacionsST = dataService.getAllRelacionsGrupInteresCategoriaPregunta();
         // NomGrup, categoria, pregunta
         for (Trio p : relacionsST) {

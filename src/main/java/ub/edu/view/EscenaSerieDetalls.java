@@ -27,6 +27,7 @@ public class EscenaSerieDetalls extends Escena{
     private String nom_contingut_audiovisual;
 
     //Nous atributs
+    //MPV1
 
     private EscenaMain escenaMain;
 
@@ -82,7 +83,9 @@ public class EscenaSerieDetalls extends Escena{
         Escena escena = EscenaFactory.INSTANCE.creaEscena("temporadesDetalls-view", "Temporades: "+String.valueOf(this.nom_contingut_audiovisual));
         EscenaTemporadesDetalls escenaTemporadesDetalls = ((EscenaTemporadesDetalls)escena);
         escenaTemporadesDetalls.setController(controller);
+        //MPV1
         escenaTemporadesDetalls.setEscenaMain(escenaMain);
+
         escenaTemporadesDetalls.start();
 
         //Nou codi
@@ -101,6 +104,8 @@ public class EscenaSerieDetalls extends Escena{
             alert.setHeaderText("Èxit");
             alert.setContentText("Pelicula afegida a la llista de vistos");
             alert.showAndWait();
+
+            //MPV1
             escenaMain.refreshWatchedList();
             escenaMain.refreshTopPanel();
 
@@ -115,6 +120,7 @@ public class EscenaSerieDetalls extends Escena{
     }
 
     //Nous mètodes
+    //MPV1
 
     public void setEscenaMain(EscenaMain escenaMain){
         this.escenaMain = escenaMain;
