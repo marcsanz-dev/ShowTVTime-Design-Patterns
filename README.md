@@ -10,11 +10,11 @@
 ## 📸 Application Interface
 
 ### Content Discovery & Strategy Pattern
-<img src="img/main_screen.png" width="100%">
+<img src="https://github.com/marcsanz-dev/ShowTVTime-Design-Patterns/blob/main/img/Main_screen.png" width="100%">
 *The main dashboard allows users to filter and sort media dynamically (Top 10, By IMDB Score, By Stars). This sorting logic is underpinned by the **Strategy Pattern**, allowing interchangeable algorithms at runtime.*
 
 ### Community & Access Control
-<img src="img/groups_screen.png" width="100%">
+<img src="https://github.com/marcsanz-dev/ShowTVTime-Design-Patterns/blob/main/img/Groups_screen.png" width="100%">
 *Users can browse and join communities. Access to exclusive groups is gated by an **Automated Admission System** (Logic Challenge) that validates user knowledge before granting membership.*
 
 ---
